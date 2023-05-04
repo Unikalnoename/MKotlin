@@ -1,0 +1,9 @@
+<resources>
+    <string name="button_text">Бомбить Киев</string>
+    <string name="Question">Дезертировать решил?</string>
+    <string name="edit">Почему?</string>
+    <string name="editnuke">Код?:</string>
+    <string name="NO">НЕТ</string>
+    <string name="YES">Да</string>
+    <string name="err">шибка загрузки изображения</string>
+</resources>

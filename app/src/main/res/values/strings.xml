@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name" translatable="false">PutinPhone</string>
+    <string name="tex2" translatable="false">Z.O.V</string>
+    <string name="button_text">Bomb Kiev</string>
+    <string name="Question">Have you decided to desert?</string>
+    <string name="edit">Why?</string>
+    <string name="editnuke">Code?:</string>
+    <string name="NO">NO</string>
+    <string name="YES">Yes</string>
+    <string name="err">Image loading error</string>
+</resources>
