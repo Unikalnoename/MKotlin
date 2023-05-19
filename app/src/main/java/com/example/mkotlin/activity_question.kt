@@ -3,8 +3,10 @@ package com.example.mkotlin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings.Global
 import android.view.View
 import com.example.mkotlin.databinding.ActivityQuestionBinding
+import kotlinx.coroutines.GlobalScope
 
 class activity_question : AppCompatActivity(){
     private lateinit var classbinding:ActivityQuestionBinding
@@ -18,8 +20,8 @@ class activity_question : AppCompatActivity(){
     fun back (v: View){
         val act = Intent(this, MainActivity::class.java)
         act.putExtra("is_Denied",true)
-        finishAffinity()
         startActivity(act)
+        finishAffinity()
     }
 
     fun press (v: View){
@@ -41,7 +43,7 @@ class activity_question : AppCompatActivity(){
             drctrs_stuff.nuke -> {
                 classbinding.editText.visibility = View.GONE
                 classbinding.nukeText.visibility = View.VISIBLE
-                if (classbinding.nukeText.text.toString() == drctrs_stuff.nuke_code){
+                if (classbinding.nukeText.text.toString() == drctrs_stuff.nuke_code) {
                     classbinding.textView.textSize = 50f
                     classbinding.btnAcp.text = "X)"
                     classbinding.textView.text = "GENOCIDE"
@@ -51,16 +53,27 @@ class activity_question : AppCompatActivity(){
                     classbinding.textView.textSize = 25f
                     classbinding.textView.text = "Неверный код"
                 }
-                if(classbinding.nukeText.text.toString() == ""){
+                if(classbinding.nukeText.text.toString() == "") {
                     classbinding.textView.text = "?"
                 }
             }
-            "Слава Украине" -> {
-                classbinding.textView.text = "Да пошёл ты нахуй"
-                classbinding.btnAcp.text = "ПИЗДА!"
-                classbinding.butNo.text = "Клоун"
-            }
-            else -> finishAffinity()
+            else -> check()
         }
+    }
+
+    fun check(){
+        if(drctrs_stuff.listOfShame.contains(classbinding.editText.text.toString())) {
+            clown()
+        }
+        else {
+            drctrs_stuff.isclick = false
+            finishAffinity()
+        }
+    }
+
+    fun clown(){
+        classbinding.textView.text = "Да пошёл ты нахуй"
+        classbinding.btnAcp.text = "ПИЗДА!"
+        classbinding.butNo.text = "Клоун"
     }
 }

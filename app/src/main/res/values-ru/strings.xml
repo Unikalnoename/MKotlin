@@ -5,5 +5,5 @@
     <string name="editnuke">Код?:</string>
     <string name="NO">НЕТ</string>
     <string name="YES">Да</string>
-    <string name="err">шибка загрузки изображения</string>
+    <string name="err">Ошибка загрузки изображения</string>
 </resources>
