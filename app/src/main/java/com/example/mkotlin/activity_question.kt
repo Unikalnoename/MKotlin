@@ -60,11 +60,12 @@ class activity_question : AppCompatActivity(){
     }
 
     fun check(){
-        if(drctrs_stuff.listOfShame.contains(classbinding.editText.text.toString())) {
+        if (drctrs_stuff.listOfShame.contains(classbinding.editText.text.toString())){
             clown()
         }
         else {
             drctrs_stuff.isclick = false
+            drctrs_stuff.isOpen = false
             finishAffinity()
         }
     }

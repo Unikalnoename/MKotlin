@@ -10,12 +10,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mkotlin.databinding.ActivityMainBinding
 
-// Изменение орейнтации = is_Denied true
-
 class MainActivity : AppCompatActivity(){
     private lateinit var classbinding:ActivityMainBinding
     private var count:Long = 0
     private var clck = true
+    private var denied = false
 
     override fun onCreate(name: Bundle?){
         super.onCreate(name)
@@ -24,10 +23,13 @@ class MainActivity : AppCompatActivity(){
         if (!drctrs_stuff.isclick){
             classbinding.Text.isClickable = false
         }
-        var is_Denied = getIntent().getBooleanExtra("is_Denied", false);
-        if (!is_Denied){
-            toast("Плюхи-приколюхи каждые 50 обстрелов")
+        denied = getIntent().getBooleanExtra("is_Denied", false);
+        if (drctrs_stuff.isOpen2){
+            if (drctrs_stuff.isclick){
+                denied = true
+            }
         }
+        drctrs_stuff.isOpen2 = true
     }
 
     fun clicks_and_all_that(v: View){
@@ -54,12 +56,17 @@ class MainActivity : AppCompatActivity(){
         drctrs_stuff.isclick = true
         classbinding.text2.text = "Обстрелов: ${++count}"
         when(count){
-            in 1..49 -> {
+            1L -> {
+                if (!drctrs_stuff.isOpen){
+                    toast("Плюхи-приколюхи каждые 50 обстрелов")
+                }
+                drctrs_stuff.isOpen = true
                 classbinding.Text.isClickable = true
                 classbinding.Text.text = "PutinPhone"
                 classbinding.Text.rotationX = 45f
                 classbinding.Text.textSize = 50f
             }
+            in 2..49 -> classbinding.Text.text = "PutinPhone"
             in 50..99 -> classbinding.Text.text = "ХОРОШ"
             in 100..149 -> classbinding.Text.text = "МЕГАХОРОШ"
             in 150..199 -> classbinding.Text.text = "Резня"
@@ -127,7 +134,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     fun isLand(): Boolean{
-        if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
             return true
         }
         else{
@@ -141,8 +148,7 @@ class MainActivity : AppCompatActivity(){
 
     override fun onStart(){
         super.onStart()
-        var is_Denied = getIntent().getBooleanExtra("is_Denied", false);
-        if (count > 0 || is_Denied){
+        if (count > 0 || denied){
             classbinding.boom.visibility = View.GONE
             classbinding.Text.visibility = View.VISIBLE
             classbinding.text2.isEnabled = false
