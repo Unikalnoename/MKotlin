@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mkotlin.databinding.ActivityMainBinding
 
+// Изменение орейнтации = is_Denied true
+
 class MainActivity : AppCompatActivity(){
     private lateinit var classbinding:ActivityMainBinding
     private var count:Long = 0
@@ -19,21 +21,21 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(name)
         classbinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(classbinding.root)
-        if (!drctrs_stuff.isclick) {
+        if (!drctrs_stuff.isclick){
             classbinding.Text.isClickable = false
         }
         var is_Denied = getIntent().getBooleanExtra("is_Denied", false);
-        if (!is_Denied) {
+        if (!is_Denied){
             toast("Плюхи-приколюхи каждые 50 обстрелов")
         }
     }
 
     fun clicks_and_all_that(v: View){
-        if (!clck) {
+        if (!clck){
             clck = true
             classbinding.text2.text = "Z.O.V"
         }
-        else {
+        else{
             clck = false
             classbinding.text2.text = "Обстрелов: $count"
         }
@@ -79,7 +81,7 @@ class MainActivity : AppCompatActivity(){
                 if (isLand()){
                     classbinding.Text.text = ("Скоро ракеты, полетят по настоящему)")
                 }
-                else {
+                else{
                     classbinding.Text.text = "Скоро ракеты,\n полетят по\n настоящему)"
                 }
             }
@@ -124,16 +126,16 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
-    fun isLand(): Boolean {
-        if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+    fun isLand(): Boolean{
+        if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
             return true
         }
-        else {
+        else{
             return false
         }
     }
 
-    fun Context.toast(message: CharSequence) {
+    fun Context.toast(message: CharSequence){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 

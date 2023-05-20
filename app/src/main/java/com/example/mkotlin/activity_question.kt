@@ -3,10 +3,8 @@ package com.example.mkotlin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings.Global
 import android.view.View
 import com.example.mkotlin.databinding.ActivityQuestionBinding
-import kotlinx.coroutines.GlobalScope
 
 class activity_question : AppCompatActivity(){
     private lateinit var classbinding:ActivityQuestionBinding
@@ -35,7 +33,7 @@ class activity_question : AppCompatActivity(){
     }
 
     fun accpet(v: View){
-        when(classbinding.editText.text.toString()) {
+        when(classbinding.editText.text.toString()){
             "" -> classbinding.editText.hint = "Так почему?"
             drctrs_stuff.drctr_ua -> classbinding.textView.text = "Состояние: ${drctrs_stuff.drctr_ua_cn}"
             drctrs_stuff.drctr_ru -> classbinding.textView.text = "Состояние: ${drctrs_stuff.drctr_ru_cn}"
