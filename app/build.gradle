@@ -13,11 +13,17 @@ android {
         minSdk 24
         targetSdk 33
         versionCode 6
-        versionName "1.31 DEV"
+        versionName "1.31"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
+            minifyEnabled true
+            shrinkResources true
+            crunchPngs false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled true
             shrinkResources true
             crunchPngs false

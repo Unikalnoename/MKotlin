@@ -51,7 +51,7 @@ class activity_question : AppCompatActivity(){
                     classbinding.textView.textSize = 25f
                     classbinding.textView.text = "Неверный код"
                 }
-                if(classbinding.nukeText.text.toString() == "") {
+                if(classbinding.nukeText.text.toString() == ""){
                     classbinding.textView.text = "?"
                 }
             }

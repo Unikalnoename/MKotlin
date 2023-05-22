@@ -24,10 +24,8 @@ class MainActivity : AppCompatActivity(){
             classbinding.Text.isClickable = false
         }
         denied = getIntent().getBooleanExtra("is_Denied", false);
-        if (drctrs_stuff.isOpen2){
-            if (drctrs_stuff.isclick){
-                denied = true
-            }
+        if (drctrs_stuff.isOpen2 && drctrs_stuff.isclick){
+            denied = true
         }
         drctrs_stuff.isOpen2 = true
     }
