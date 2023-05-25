@@ -1,11 +1,9 @@
 package com.example.mkotlin
 
-import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mkotlin.databinding.ActivityMainBinding
@@ -20,9 +18,6 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(name)
         classbinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(classbinding.root)
-        if (!drctrs_stuff.isclick){
-            classbinding.Text.isClickable = false
-        }
         denied = getIntent().getBooleanExtra("is_Denied", false);
         if (drctrs_stuff.isOpen2 && drctrs_stuff.isclick){
             denied = true
@@ -42,6 +37,15 @@ class MainActivity : AppCompatActivity(){
     }
 
     fun lol (v: View){
+        if (!drctrs_stuff.isclick){
+            Toast.makeText(applicationContext, "А бомбонуть?", Toast.LENGTH_SHORT).show()
+        }
+        else{
+            newAct()
+        }
+    }
+
+    fun newAct(){
         val act = Intent(this, activity_question::class.java)
         startActivity(act)
         finishAffinity()
@@ -56,7 +60,7 @@ class MainActivity : AppCompatActivity(){
         when(count){
             1L -> {
                 if (!drctrs_stuff.isOpen){
-                    toast("Плюхи-приколюхи каждые 50 обстрелов")
+                    Toast.makeText(applicationContext, "Плюхи-приколюхи каждые 50 обстрелов", Toast.LENGTH_SHORT).show()
                 }
                 drctrs_stuff.isOpen = true
                 classbinding.Text.isClickable = true
@@ -131,6 +135,11 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        newAct()
+    }
+
     fun isLand(): Boolean{
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
             return true
@@ -138,10 +147,6 @@ class MainActivity : AppCompatActivity(){
         else{
             return false
         }
-    }
-
-    fun Context.toast(message: CharSequence){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onStart(){

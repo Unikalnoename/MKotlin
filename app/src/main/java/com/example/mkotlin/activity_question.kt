@@ -32,6 +32,13 @@ class activity_question : AppCompatActivity(){
         classbinding.editText.visibility = View.VISIBLE
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val act = Intent(this, activity_question::class.java)
+        startActivity(act)
+        finishAffinity()
+    }
+
     fun accpet(v: View){
         when(classbinding.editText.text.toString()){
             "" -> classbinding.editText.hint = "Так почему?"
