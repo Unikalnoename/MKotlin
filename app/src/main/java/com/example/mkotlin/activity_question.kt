@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package com.example.mkotlin
 
 import android.content.Intent
@@ -16,8 +18,14 @@ class activity_question : AppCompatActivity(){
     }
 
     fun back (v: View){
+        var without_bombing = getIntent().getBooleanExtra("without_bombing", true);
         val act = Intent(this, MainActivity::class.java)
-        act.putExtra("is_Denied",true)
+        if (without_bombing){
+            act.putExtra("is_Denied",false)
+        }
+        else{
+            act.putExtra("is_Denied", true)
+        }
         startActivity(act)
         finishAffinity()
     }
@@ -32,7 +40,9 @@ class activity_question : AppCompatActivity(){
         classbinding.editText.visibility = View.VISIBLE
     }
 
-    override fun onBackPressed() {
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed(){
+        @Suppress("DEPRECATION")
         super.onBackPressed()
         val act = Intent(this, activity_question::class.java)
         startActivity(act)

@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package com.example.mkotlin
 
 import android.content.Intent
@@ -37,16 +39,17 @@ class MainActivity : AppCompatActivity(){
     }
 
     fun lol (v: View){
-        if (!drctrs_stuff.isclick){
-            Toast.makeText(applicationContext, "А бомбонуть?", Toast.LENGTH_SHORT).show()
-        }
-        else{
-            newAct()
-        }
+        newAct()
     }
 
     fun newAct(){
         val act = Intent(this, activity_question::class.java)
+        if (!drctrs_stuff.isclick){
+            act.putExtra("without_bombing", true)
+        }
+        else{
+            act.putExtra("without_bombing", false)
+        }
         startActivity(act)
         finishAffinity()
     }
@@ -135,7 +138,9 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
-    override fun onBackPressed() {
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed(){
+        @Suppress("DEPRECATION")
         super.onBackPressed()
         newAct()
     }
