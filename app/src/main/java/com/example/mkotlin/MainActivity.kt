@@ -21,10 +21,9 @@ class MainActivity : AppCompatActivity(){
         classbinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(classbinding.root)
         denied = getIntent().getBooleanExtra("is_Denied", false);
-        if (drctrs_stuff.isOpen2 && drctrs_stuff.isclick){
+        if (drctrs_stuff.isclick){
             denied = true
         }
-        drctrs_stuff.isOpen2 = true
     }
 
     fun clicks_and_all_that(v: View){
@@ -58,14 +57,13 @@ class MainActivity : AppCompatActivity(){
         classbinding.text2.textSize = 35.5715f;
         classbinding.text2.isEnabled = true;
         clck = false
-        drctrs_stuff.isclick = true
         classbinding.text2.text = "Обстрелов: ${++count}"
         when(count){
             1L -> {
-                if (!drctrs_stuff.isOpen){
+                if (!drctrs_stuff.isclick){
                     Toast.makeText(applicationContext, "Плюхи-приколюхи каждые 50 обстрелов", Toast.LENGTH_SHORT).show()
                 }
-                drctrs_stuff.isOpen = true
+                drctrs_stuff.isclick = true
                 classbinding.Text.isClickable = true
                 classbinding.Text.text = "PutinPhone"
                 classbinding.Text.rotationX = 45f
@@ -140,9 +138,9 @@ class MainActivity : AppCompatActivity(){
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed(){
+        newAct()
         @Suppress("DEPRECATION")
         super.onBackPressed()
-        newAct()
     }
 
     fun isLand(): Boolean{

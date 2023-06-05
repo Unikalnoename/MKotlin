@@ -42,11 +42,11 @@ class activity_question : AppCompatActivity(){
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed(){
-        @Suppress("DEPRECATION")
-        super.onBackPressed()
         val act = Intent(this, activity_question::class.java)
         startActivity(act)
         finishAffinity()
+        @Suppress("DEPRECATION")
+        super.onBackPressed()
     }
 
     fun accpet(v: View){
@@ -64,7 +64,7 @@ class activity_question : AppCompatActivity(){
                     classbinding.textView.text = "GENOCIDE"
                     classbinding.butNo.visibility = View.GONE
                 }
-                else {
+                else{
                     classbinding.textView.textSize = 25f
                     classbinding.textView.text = "Неверный код"
                 }
@@ -78,18 +78,13 @@ class activity_question : AppCompatActivity(){
 
     fun check(){
         if (drctrs_stuff.listOfShame.contains(classbinding.editText.text.toString())){
-            clown()
+            classbinding.textView.text = "Да пошёл ты нахуй"
+            classbinding.btnAcp.text = "ПИЗДА!"
+            classbinding.butNo.text = "Клоун"
         }
-        else {
+        else{
             drctrs_stuff.isclick = false
-            drctrs_stuff.isOpen = false
             finishAffinity()
         }
-    }
-
-    fun clown(){
-        classbinding.textView.text = "Да пошёл ты нахуй"
-        classbinding.btnAcp.text = "ПИЗДА!"
-        classbinding.butNo.text = "Клоун"
     }
 }
