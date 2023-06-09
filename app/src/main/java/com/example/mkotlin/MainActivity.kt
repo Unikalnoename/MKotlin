@@ -4,6 +4,7 @@ package com.example.mkotlin
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity(){
     private var count:Long = 0
     private var clck = true
     private var denied = false
+    private val OSversion = Build.VERSION.SDK_INT
 
     override fun onCreate(name: Bundle?){
         super.onCreate(name)
@@ -29,11 +31,11 @@ class MainActivity : AppCompatActivity(){
     fun clicks_and_all_that(v: View){
         if (!clck){
             clck = true
-            classbinding.text2.text = "Z.O.V"
+            classbinding.text2.setText(R.string.tex2)
         }
         else{
             clck = false
-            classbinding.text2.text = "Обстрелов: $count"
+            classbinding.text2.text = "${resources.getString(R.string.shell)} ${count}"
         }
     }
 
@@ -57,24 +59,24 @@ class MainActivity : AppCompatActivity(){
         classbinding.text2.textSize = 35.5715f;
         classbinding.text2.isEnabled = true;
         clck = false
-        classbinding.text2.text = "Обстрелов: ${++count}"
+        classbinding.text2.text = "${resources.getString(R.string.shell)} ${++count}"
         when(count){
             1L -> {
                 if (!drctrs_stuff.isclick){
-                    Toast.makeText(applicationContext, "Плюхи-приколюхи каждые 50 обстрелов", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, resources.getString(R.string.toast), Toast.LENGTH_SHORT).show()
                 }
                 drctrs_stuff.isclick = true
                 classbinding.Text.isClickable = true
-                classbinding.Text.text = "PutinPhone"
+                classbinding.Text.setText(R.string.app_name)
                 classbinding.Text.rotationX = 45f
                 classbinding.Text.textSize = 50f
             }
-            in 2..49 -> classbinding.Text.text = "PutinPhone"
-            in 50..99 -> classbinding.Text.text = "ХОРОШ"
-            in 100..149 -> classbinding.Text.text = "МЕГАХОРОШ"
-            in 150..199 -> classbinding.Text.text = "Резня"
-            in 200..249 -> classbinding.Text.text = "Хлопки)"
-            in 250..299 -> classbinding.Text.text = "Angry birds)"
+            in 2..49 -> classbinding.Text.setText(R.string.app_name)
+            in 50..99 -> classbinding.Text.setText(R.string.good)
+            in 100..149 -> classbinding.Text.setText(R.string.mgood)
+            in 150..199 -> classbinding.Text.setText(R.string.rez)
+            in 200..249 -> classbinding.Text.setText(R.string.hlop)
+            in 250..299 -> classbinding.Text.setText(R.string.ab)
             in 300..349 -> {
                 classbinding.Text.visibility = View.INVISIBLE
                 classbinding.boom.setImageResource(R.drawable.boom)
@@ -84,21 +86,21 @@ class MainActivity : AppCompatActivity(){
                 classbinding.boom.visibility = View.GONE
                 classbinding.Text.rotationX = 0f
                 classbinding.Text.textSize = 35f
-                classbinding.Text.text = "До последнего\n     украинца"
+                classbinding.Text.text = "${resources.getString(R.string.l1)}\n    ${resources.getString(R.string.l2)}"
                 classbinding.Text.visibility = View.VISIBLE
             }
             in 400..449 -> {
                 if (isLand()){
-                    classbinding.Text.text = ("Скоро ракеты, полетят по настоящему)")
+                    classbinding.Text.text = "${resources.getString(R.string.rr1)} ${resources.getString(R.string.rr2)} ${resources.getString(R.string.rr3)}"
                 }
                 else{
-                    classbinding.Text.text = "Скоро ракеты,\n полетят по\n настоящему)"
+                    classbinding.Text.text = "${resources.getString(R.string.rr1)}\n ${resources.getString(R.string.rr2)}\n ${resources.getString(R.string.rr3)}"
                 }
             }
             in 450..499 -> {
                 classbinding.Text.rotationX = 45f
                 classbinding.Text.textSize = 50f
-                classbinding.Text.text = "nuke: 666"
+                classbinding.Text.setText(R.string.n)
             }
             in 500..549 -> {
                 classbinding.Text.visibility = View.INVISIBLE
@@ -108,28 +110,28 @@ class MainActivity : AppCompatActivity(){
             in 550..599 -> {
                 classbinding.boom.visibility = View.GONE
                 classbinding.Text.rotationX = 0f
-                classbinding.Text.text = "X)"
+                classbinding.Text.setText(R.string.x)
                 classbinding.Text.visibility = View.VISIBLE
             }
             666L -> {
                 classbinding.Text.rotationX = 0f
-                classbinding.Text.text = "АДская поджарка"
+                classbinding.Text.setText(R.string.hell)
                 classbinding.Text.textSize = 40f
             }
             777L -> {
-                classbinding.Text.text = "M777?"
+                classbinding.Text.setText(R.string.m)
                 classbinding.Text.rotationX = 45f
                 classbinding.Text.textSize = 50f
             }
-            1000L -> classbinding.Text.text = "Страйк!"
-            1488L -> classbinding.Text.text = "UA moment"
+            1000L -> classbinding.Text.setText(R.string.str)
+            1488L -> classbinding.Text.setText(R.string.ua)
             10000L -> {
                 classbinding.Text.rotationX = 0f
                 classbinding.Text.textSize = 40f
-                classbinding.Text.text = "Свинострайк!!!"
+                classbinding.Text.setText(R.string.ps)
             }
             else -> {
-                classbinding.Text.text = "PutinPhone2"
+                classbinding.Text.setText(R.string.pp2)
                 classbinding.Text.rotationX = 45f
                 classbinding.Text.textSize = 50f
             }
@@ -161,9 +163,9 @@ class MainActivity : AppCompatActivity(){
             count = 0
             classbinding.Text.textSize = 27f
             classbinding.Text.rotationX = 0f
-            classbinding.Text.text = "Пока тебя не было, Киев\n      уже востановили!"
+            classbinding.Text.text = "${resources.getString(R.string.msg)}\n${resources.getString(R.string.msg2)}"
             classbinding.text2.textSize = 25f;
-            classbinding.text2.text = "Предётся бомбить,\n           заново("
+            classbinding.text2.text = "${resources.getString(R.string.msg3)}\n${resources.getString(R.string.msg4)}"
         }
     }
 }

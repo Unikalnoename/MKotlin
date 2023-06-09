@@ -27,5 +27,9 @@ object drctrs_stuff {
         "Слава украине героям слава", "слава Украине героям слава", "Слава Україні, героям слава",
         "Слава Україні героям слава", "слава Україні, героям слава", "слава Україні героям слава",
         "Слава україні, героям слава", "Слава україні героям слава", "слава україні, героям слава",
-        "слава україні героям слава")
+        "слава україні героям слава", "glory to Ukraine", "Glory to Ukraine", "glory to ukraine",
+        "Glory to ukraine", "glory to Ukraine, glory to the heroes", "glory to Ukraine glory to the heroes",
+        "glory to ukraine, glory to the heroes", "glory to ukraine glory to the heroes",
+        "Glory to Ukraine, glory to the heroes", "Glory to Ukraine glory to the heroes",
+        "Glory to ukraine, glory to the heroes", "Glory to ukraine glory to the heroes")
 }

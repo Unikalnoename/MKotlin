@@ -31,7 +31,7 @@ class activity_question : AppCompatActivity(){
     }
 
     fun press (v: View){
-        classbinding.textView.text = "Точно?"
+        classbinding.textView.setText(R.string.sure)
         classbinding.btnAcp.visibility = View.VISIBLE
     }
 
@@ -51,25 +51,25 @@ class activity_question : AppCompatActivity(){
 
     fun accpet(v: View){
         when(classbinding.editText.text.toString()){
-            "" -> classbinding.editText.hint = "Так почему?"
-            drctrs_stuff.drctr_ua -> classbinding.textView.text = "Состояние: ${drctrs_stuff.drctr_ua_cn}"
-            drctrs_stuff.drctr_ru -> classbinding.textView.text = "Состояние: ${drctrs_stuff.drctr_ru_cn}"
-            drctrs_stuff.drctr_us -> classbinding.textView.text = "Состояние: ${drctrs_stuff.drctr_us_cn}"
+            "" -> classbinding.editText.hint = "${resources.getString(R.string.why)}"
+            drctrs_stuff.drctr_ua -> classbinding.textView.text = "${resources.getString(R.string.cond)}${drctrs_stuff.drctr_ua_cn}"
+            drctrs_stuff.drctr_ru -> classbinding.textView.text = "${resources.getString(R.string.cond)}${drctrs_stuff.drctr_ru_cn}"
+            drctrs_stuff.drctr_us -> classbinding.textView.text = "${resources.getString(R.string.cond)}${drctrs_stuff.drctr_us_cn}"
             drctrs_stuff.nuke -> {
                 classbinding.editText.visibility = View.GONE
                 classbinding.nukeText.visibility = View.VISIBLE
                 if (classbinding.nukeText.text.toString() == drctrs_stuff.nuke_code) {
                     classbinding.textView.textSize = 50f
-                    classbinding.btnAcp.text = "X)"
-                    classbinding.textView.text = "GENOCIDE"
+                    classbinding.btnAcp.setText(R.string.x)
+                    classbinding.textView.setText(R.string.gena)
                     classbinding.butNo.visibility = View.GONE
                 }
                 else{
                     classbinding.textView.textSize = 25f
-                    classbinding.textView.text = "Неверный код"
+                    classbinding.textView.setText(R.string.ercode)
                 }
                 if(classbinding.nukeText.text.toString() == ""){
-                    classbinding.textView.text = "?"
+                    classbinding.textView.setText(R.string.q)
                 }
             }
             else -> check()
@@ -78,9 +78,9 @@ class activity_question : AppCompatActivity(){
 
     fun check(){
         if (drctrs_stuff.listOfShame.contains(classbinding.editText.text.toString())){
-            classbinding.textView.text = "Да пошёл ты нахуй"
-            classbinding.btnAcp.text = "ПИЗДА!"
-            classbinding.butNo.text = "Клоун"
+            classbinding.textView.setText(R.string.faq)
+            classbinding.btnAcp.setText(R.string.piz)
+            classbinding.butNo.setText(R.string.clo)
         }
         else{
             drctrs_stuff.isclick = false

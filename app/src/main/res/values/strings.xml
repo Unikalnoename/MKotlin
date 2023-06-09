@@ -8,4 +8,37 @@
     <string name="NO">NO</string>
     <string name="YES">Yes</string>
     <string name="err">Image loading error</string>
+    <string name="shell">Attacks:</string>
+    <string name="good">GOOD</string>
+    <string name="mgood">MEGAGOOD</string>
+    <string name="toast">Jokes every 50 attacks</string>
+    <string name="msg">While you were gone, Kiev </string>
+    <string name="msg2">has already been restored!</string>
+    <string name="msg3">Will have to</string>
+    <string name="msg4"> bomb again</string>
+    <string name="pp2" translatable="false">PutinPhone2</string>
+    <string name="sure">Are you sure?</string>
+    <string name="why">So why?</string>
+    <string name="ercode">Incorrect code</string>
+    <string name="cond">"Condition: "</string>
+    <string name="x" translatable="false">X)</string>
+    <string name="gena" translatable="false">GENOCIDE</string>
+    <string name="q" translatable="false">?</string>
+    <string name="ua" translatable="false">UA moment</string>
+    <string name="m" translatable="false">M777?</string>
+    <string name="n" translatable="false">nuke: 666</string>
+    <string name="clo">Clown!</string>
+    <string name="piz">O.A.F.</string>
+    <string name="faq">Fuck you</string>
+    <string name="ab" translatable="false">Angry birds)</string>
+    <string name="rez">Massacre</string>
+    <string name="hlop">Claps)</string>
+    <string name="l1">To the last</string>
+    <string name="l2">Ukrainian</string>
+    <string name="str">Strike!</string>
+    <string name="hell">Infernal roast</string>
+    <string name="ps">Pig strike!!!</string>
+    <string name="rr1">Soon the rockets</string>
+    <string name="rr2">will fly</string>
+    <string name="rr3">for real)</string>
 </resources>
