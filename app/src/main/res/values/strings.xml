@@ -41,4 +41,6 @@
     <string name="rr1">Soon the rockets</string>
     <string name="rr2">will fly</string>
     <string name="rr3">for real)</string>
+    <string name="rec">Record:</string>
+    <string name="newrec">New record!</string>
 </resources>

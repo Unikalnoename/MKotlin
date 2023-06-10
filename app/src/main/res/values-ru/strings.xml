@@ -31,4 +31,6 @@
     <string name="rr1">"Скоро ракеты,"</string>
     <string name="rr2">полетят по</string>
     <string name="rr3">настоящему)</string>
+    <string name="rec">Рекорд:</string>
+    <string name="newrec">Новый рекорд!</string>
 </resources>

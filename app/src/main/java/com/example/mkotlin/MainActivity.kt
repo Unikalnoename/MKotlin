@@ -2,9 +2,11 @@
 
 package com.example.mkotlin
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
-import android.os.Build
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -13,15 +15,17 @@ import com.example.mkotlin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(){
     private lateinit var classbinding:ActivityMainBinding
+    var pref:SharedPreferences? = null
     private var count:Long = 0
     private var clck = true
     private var denied = false
-    private val OSversion = Build.VERSION.SDK_INT
+    private var isshowed = false
 
     override fun onCreate(name: Bundle?){
         super.onCreate(name)
         classbinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(classbinding.root)
+        pref = getSharedPreferences("MEMORY", Context.MODE_PRIVATE)
         denied = getIntent().getBooleanExtra("is_Denied", false);
         if (drctrs_stuff.isclick){
             denied = true
@@ -31,7 +35,7 @@ class MainActivity : AppCompatActivity(){
     fun clicks_and_all_that(v: View){
         if (!clck){
             clck = true
-            classbinding.text2.setText(R.string.tex2)
+            classbinding.text2.text = "${resources.getString(R.string.rec)} ${pref?.getLong("count_max", 0)!!}"
         }
         else{
             clck = false
@@ -60,6 +64,13 @@ class MainActivity : AppCompatActivity(){
         classbinding.text2.isEnabled = true;
         clck = false
         classbinding.text2.text = "${resources.getString(R.string.shell)} ${++count}"
+        if (pref?.getLong("count_max", 0)!! < count){
+            pref?.edit()?.putLong("count_max", count)?.apply()
+            if (!isshowed && count > 1){
+                Toast.makeText(applicationContext, resources.getString(R.string.newrec), Toast.LENGTH_SHORT).show()
+                isshowed = true
+            }
+        }
         when(count){
             1L -> {
                 if (!drctrs_stuff.isclick){

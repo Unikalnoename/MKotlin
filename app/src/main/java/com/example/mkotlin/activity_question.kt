@@ -2,7 +2,9 @@
 
 package com.example.mkotlin
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,11 +12,13 @@ import com.example.mkotlin.databinding.ActivityQuestionBinding
 
 class activity_question : AppCompatActivity(){
     private lateinit var classbinding:ActivityQuestionBinding
+    var pref: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         classbinding = ActivityQuestionBinding.inflate(layoutInflater)
         setContentView(classbinding.root)
+        pref = getSharedPreferences("MEMORY", Context.MODE_PRIVATE)
     }
 
     fun back (v: View){
@@ -81,6 +85,7 @@ class activity_question : AppCompatActivity(){
             classbinding.textView.setText(R.string.faq)
             classbinding.btnAcp.setText(R.string.piz)
             classbinding.butNo.setText(R.string.clo)
+            pref?.edit()?.clear()?.apply()
         }
         else{
             drctrs_stuff.isclick = false
