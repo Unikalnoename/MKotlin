@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -44,19 +43,8 @@ class MainActivity : AppCompatActivity(){
     }
 
     fun lol (v: View){
-        newAct()
-    }
-
-    fun newAct(){
-        val act = Intent(this, activity_question::class.java)
-        if (!drctrs_stuff.isclick){
-            act.putExtra("without_bombing", true)
-        }
-        else{
-            act.putExtra("without_bombing", false)
-        }
+        val act = Intent(this, settings::class.java)
         startActivity(act)
-        finishAffinity()
     }
 
     fun click (v: View){
@@ -151,7 +139,15 @@ class MainActivity : AppCompatActivity(){
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed(){
-        newAct()
+        val act = Intent(this, activity_question::class.java)
+        if (!drctrs_stuff.isclick){
+            act.putExtra("without_bombing", true)
+        }
+        else{
+            act.putExtra("without_bombing", false)
+        }
+        startActivity(act)
+        finishAffinity()
         @Suppress("DEPRECATION")
         super.onBackPressed()
     }
@@ -167,15 +163,17 @@ class MainActivity : AppCompatActivity(){
 
     override fun onStart(){
         super.onStart()
+        classbinding.btn.text = "${resources.getString(R.string.bomb)} ${pref?.getString("city_now", resources.getString(R.string.Kyiv))}"
+        classbinding.btn2?.text  = "${resources.getString(R.string.bomb)} ${pref?.getString("city_now", resources.getString(R.string.Kyiv))}"
         if (count > 0 || denied){
             classbinding.boom.visibility = View.GONE
             classbinding.Text.visibility = View.VISIBLE
             classbinding.text2.isEnabled = false
             count = 0
-            classbinding.Text.textSize = 27f
+            classbinding.Text.textSize = 25f
             classbinding.Text.rotationX = 0f
-            classbinding.Text.text = "${resources.getString(R.string.msg)}\n${resources.getString(R.string.msg2)}"
-            classbinding.text2.textSize = 25f;
+            classbinding.Text.text = "${resources.getString(R.string.msg)} ${pref?.getString("city_now", resources.getString(R.string.Kyiv))}\n${resources.getString(R.string.msg2)}"
+            classbinding.text2.textSize = 25f
             classbinding.text2.text = "${resources.getString(R.string.msg3)}\n${resources.getString(R.string.msg4)}"
         }
     }

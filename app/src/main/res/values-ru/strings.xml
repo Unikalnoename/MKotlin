@@ -10,7 +10,7 @@
     <string name="good">ХОРОШ</string>
     <string name="mgood">МЕГАХОРОШ</string>
     <string name="toast">Плюхи-приколюхи каждые 50 обстрелов</string>
-    <string name="msg">Пока тебя не было, Киев</string>
+    <string name="msg">Пока тебя не было, </string>
     <string name="msg2">"      уже востановили!"</string>
     <string name="msg3">Придётся бомбить,</string>
     <string name="msg4">"           заново("</string>
@@ -33,4 +33,13 @@
     <string name="rr3">настоящему)</string>
     <string name="rec">Рекорд:</string>
     <string name="newrec">Новый рекорд!</string>
+    <string name="chose">Выберите город</string>
+    <string name="Lviv">Львов</string>
+    <string name="Kyiv">Киев</string>
+    <string name="apl">Применено!</string>
+    <string name="bomb">Бомбить</string>
+    <string name="Sumy">Сумы</string>
+    <string name="Rovno">Ровно</string>
+    <string name="Lutsk">Луцк</string>
+    <string name="Dnipro">Днепр</string>
 </resources>

@@ -73,6 +73,8 @@
         android:id="@+id/boom"
         android:layout_width="300sp"
         android:layout_height="250sp"
+        android:contentDescription="@string/err"
+        android:onClick="lol"
         android:scaleType="fitXY"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,7 +82,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.052"
-        android:contentDescription="@string/err" />
+        app:layout_constraintVertical_bias="0.052" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

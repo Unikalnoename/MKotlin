@@ -12,8 +12,8 @@
     <string name="good">GOOD</string>
     <string name="mgood">MEGAGOOD</string>
     <string name="toast">Jokes every 50 attacks</string>
-    <string name="msg">While you were gone, Kiev </string>
-    <string name="msg2">has already been restored!</string>
+    <string name="msg">While you were gone, </string>
+    <string name="msg2"> has already been restored!</string>
     <string name="msg3">Will have to</string>
     <string name="msg4"> bomb again</string>
     <string name="pp2" translatable="false">PutinPhone2</string>
@@ -43,4 +43,13 @@
     <string name="rr3">for real)</string>
     <string name="rec">Record:</string>
     <string name="newrec">New record!</string>
+    <string name="chose">Choose a city</string>
+    <string name="Lviv">Lviv</string>
+    <string name="Kyiv">Kyiv</string>
+    <string name="apl">Applied!</string>
+    <string name="bomb">Bomb</string>
+    <string name="Sumy">Sumy</string>
+    <string name="Rovno">Rovno</string>
+    <string name="Lutsk">Lutsk</string>
+    <string name="Dnipro">Dnipro</string>
 </resources>
