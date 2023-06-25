@@ -6,7 +6,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +16,8 @@ import com.example.mkotlin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(){
     private lateinit var classbinding:ActivityMainBinding
-    var pref:SharedPreferences? = null
+    private lateinit var mediaPlayer: MediaPlayer
+    private var pref:SharedPreferences? = null
     private var count:Long = 0
     private var clck = true
     private var denied = false
@@ -43,11 +46,14 @@ class MainActivity : AppCompatActivity(){
     }
 
     fun lol (v: View){
+        mediaPlayer = MediaPlayer.create(this, R.raw.nosehonk)
+        mediaPlayer.start()
         val act = Intent(this, settings::class.java)
         startActivity(act)
     }
 
     fun click (v: View){
+        classbinding.btn.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         classbinding.text2.textSize = 35.5715f;
         classbinding.text2.isEnabled = true;
         clck = false
@@ -55,6 +61,8 @@ class MainActivity : AppCompatActivity(){
         if (pref?.getLong("count_max", 0)!! < count){
             pref?.edit()?.putLong("count_max", count)?.apply()
             if (!isshowed && count > 1){
+                mediaPlayer = MediaPlayer.create(this, R.raw.omg)
+                mediaPlayer.start()
                 Toast.makeText(applicationContext, resources.getString(R.string.newrec), Toast.LENGTH_SHORT).show()
                 isshowed = true
             }
@@ -122,9 +130,19 @@ class MainActivity : AppCompatActivity(){
                 classbinding.Text.rotationX = 45f
                 classbinding.Text.textSize = 50f
             }
-            1000L -> classbinding.Text.setText(R.string.str)
-            1488L -> classbinding.Text.setText(R.string.ua)
+            1000L -> {
+                mediaPlayer = MediaPlayer.create(this, R.raw.kidcheer)
+                mediaPlayer.start()
+                classbinding.Text.setText(R.string.str)
+            }
+            1488L -> {
+                mediaPlayer = MediaPlayer.create(this, R.raw.nosehonk)
+                mediaPlayer.start()
+                classbinding.Text.setText(R.string.ua)
+            }
             10000L -> {
+                mediaPlayer = MediaPlayer.create(this, R.raw.kidcheer)
+                mediaPlayer.start()
                 classbinding.Text.rotationX = 0f
                 classbinding.Text.textSize = 40f
                 classbinding.Text.setText(R.string.ps)
@@ -166,6 +184,7 @@ class MainActivity : AppCompatActivity(){
         classbinding.btn.text = "${resources.getString(R.string.bomb)} ${pref?.getString("city_now", resources.getString(R.string.Kyiv))}"
         classbinding.btn2?.text  = "${resources.getString(R.string.bomb)} ${pref?.getString("city_now", resources.getString(R.string.Kyiv))}"
         if (count > 0 || denied){
+            isshowed = false
             classbinding.boom.visibility = View.GONE
             classbinding.Text.visibility = View.VISIBLE
             classbinding.text2.isEnabled = false

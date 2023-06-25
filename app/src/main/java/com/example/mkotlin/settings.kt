@@ -12,7 +12,7 @@ import com.example.mkotlin.databinding.ActivitySettingsBinding
 
 class settings : AppCompatActivity() {
     private lateinit var classbinding: ActivitySettingsBinding
-    var pref: SharedPreferences? = null
+    private var pref: SharedPreferences? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         classbinding = ActivitySettingsBinding.inflate(layoutInflater)

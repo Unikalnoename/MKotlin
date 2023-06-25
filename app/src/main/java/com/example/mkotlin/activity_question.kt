@@ -5,6 +5,7 @@ package com.example.mkotlin
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,7 +13,8 @@ import com.example.mkotlin.databinding.ActivityQuestionBinding
 
 class activity_question : AppCompatActivity(){
     private lateinit var classbinding:ActivityQuestionBinding
-    var pref: SharedPreferences? = null
+    private lateinit var mediaPlayer: MediaPlayer
+    private var pref: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
@@ -82,6 +84,8 @@ class activity_question : AppCompatActivity(){
 
     fun check(){
         if (drctrs_stuff.listOfShame.contains(classbinding.editText.text.toString())){
+            mediaPlayer = MediaPlayer.create(this, R.raw.hell_no)
+            mediaPlayer.start()
             classbinding.textView.setText(R.string.faq)
             classbinding.btnAcp.setText(R.string.piz)
             classbinding.butNo.setText(R.string.clo)
