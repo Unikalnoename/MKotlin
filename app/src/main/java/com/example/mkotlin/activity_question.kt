@@ -8,7 +8,9 @@ import android.content.SharedPreferences
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.View
+import android.view.animation.AnimationUtils
 import com.example.mkotlin.databinding.ActivityQuestionBinding
 
 class activity_question : AppCompatActivity(){
@@ -21,9 +23,14 @@ class activity_question : AppCompatActivity(){
         classbinding = ActivityQuestionBinding.inflate(layoutInflater)
         setContentView(classbinding.root)
         pref = getSharedPreferences("MEMORY", Context.MODE_PRIVATE)
+        classbinding.butYes.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.appearance))
+        classbinding.butNo.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.appearance))
+        classbinding.textView.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.alpha))
     }
 
     fun back (v: View){
+        classbinding.butNo.startAnimation(AnimationUtils.loadAnimation(applicationContext ,R.anim.press))
+        vibro(v)
         var without_bombing = getIntent().getBooleanExtra("without_bombing", true);
         val act = Intent(this, MainActivity::class.java)
         if (without_bombing){
@@ -42,6 +49,7 @@ class activity_question : AppCompatActivity(){
     }
 
     fun yes(v: View){
+        vibro(v)
         classbinding.butYes.visibility = View.GONE
         classbinding.editText.visibility = View.VISIBLE
     }
@@ -56,6 +64,8 @@ class activity_question : AppCompatActivity(){
     }
 
     fun accpet(v: View){
+        classbinding.btnAcp.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.press))
+        vibro(v)
         when(classbinding.editText.text.toString()){
             "" -> classbinding.editText.hint = "${resources.getString(R.string.why)}"
             drctrs_stuff.drctr_ua -> classbinding.textView.text = "${resources.getString(R.string.cond)}${drctrs_stuff.drctr_ua_cn}"
@@ -82,10 +92,16 @@ class activity_question : AppCompatActivity(){
         }
     }
 
+    fun vibro(x: View){
+        x.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
+    }
+
     fun check(){
         if (drctrs_stuff.listOfShame.contains(classbinding.editText.text.toString())){
             mediaPlayer = MediaPlayer.create(this, R.raw.hell_no)
             mediaPlayer.start()
+            classbinding.btnAcp.textSize = 50f
+            classbinding.butNo.textSize = 50f
             classbinding.textView.setText(R.string.faq)
             classbinding.btnAcp.setText(R.string.piz)
             classbinding.butNo.setText(R.string.clo)

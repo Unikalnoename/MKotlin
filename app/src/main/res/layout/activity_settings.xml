@@ -7,7 +7,7 @@
     tools:context=".settings">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_K"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.215" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/button_R"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="0.755" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/button_LU"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
@@ -55,7 +55,7 @@
         app:layout_constraintVertical_bias="0.89" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button_S"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
@@ -71,7 +71,7 @@
         app:layout_constraintVertical_bias="0.621" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/button_D"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
@@ -87,7 +87,7 @@
         app:layout_constraintVertical_bias="0.35" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_L"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"

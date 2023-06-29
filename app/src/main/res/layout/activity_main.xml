@@ -56,7 +56,7 @@
         android:layout_width="300sp"
         android:layout_height="250sp"
         android:contentDescription="@string/err"
-        android:onClick="lol"
+        android:onClick="lol_boom"
         android:scaleType="fitXY"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
