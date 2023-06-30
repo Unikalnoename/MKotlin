@@ -100,127 +100,106 @@ class MainActivity : AppCompatActivity(){
                 classbinding.Text.textSize = 50f
             }
             in 2..49 -> classbinding.Text.setText(R.string.app_name)
+
             50L -> {
                 anim()
                 classbinding.Text.setText(R.string.good)
             }
             in 51..99 -> classbinding.Text.setText(R.string.good)
+
             100L -> {
                 anim()
                 classbinding.Text.setText(R.string.mgood)
             }
             in 101..149 -> classbinding.Text.setText(R.string.mgood)
+
             150L -> {
                 anim()
                 classbinding.Text.setText(R.string.rez)
             }
             in 151..199 -> classbinding.Text.setText(R.string.rez)
+
             200L -> {
                 anim()
                 classbinding.Text.setText(R.string.hlop)
             }
             in 201..249 -> classbinding.Text.setText(R.string.hlop)
+
             250L -> {
                 anim()
                 classbinding.Text.setText(R.string.ab)
             }
             in 251..299 -> classbinding.Text.setText(R.string.ab)
+
             in 300..349 -> {
                 classbinding.Text.visibility = View.INVISIBLE
                 classbinding.boom.setImageResource(R.drawable.boom)
                 classbinding.boom.visibility = View.VISIBLE
             }
+
             350L -> {
                 anim()
-                classbinding.boom.visibility = View.GONE
-                classbinding.Text.rotationX = 0f
-                classbinding.Text.textSize = 35f
-                classbinding.Text.text = "${resources.getString(R.string.l1)}\n    ${resources.getString(R.string.l2)}"
-                classbinding.Text.visibility = View.VISIBLE
+                toTheLastUkranian()
             }
-            in 351..399 -> {
-                classbinding.boom.visibility = View.GONE
-                classbinding.Text.rotationX = 0f
-                classbinding.Text.textSize = 35f
-                classbinding.Text.text = "${resources.getString(R.string.l1)}\n    ${resources.getString(R.string.l2)}"
-                classbinding.Text.visibility = View.VISIBLE
-            }
+            in 351..399 -> toTheLastUkranian()
+
             400L -> {
                 anim()
-                if (isLand()){
-                    classbinding.Text.text = "${resources.getString(R.string.rr1)} ${resources.getString(R.string.rr2)} ${resources.getString(R.string.rr3)}"
-                }
-                else{
-                    classbinding.Text.text = "${resources.getString(R.string.rr1)}\n ${resources.getString(R.string.rr2)}\n ${resources.getString(R.string.rr3)}"
-                }
+                rocketsForReal()
             }
-            in 401..449 -> {
-                if (isLand()){
-                    classbinding.Text.text = "${resources.getString(R.string.rr1)} ${resources.getString(R.string.rr2)} ${resources.getString(R.string.rr3)}"
-                }
-                else{
-                    classbinding.Text.text = "${resources.getString(R.string.rr1)}\n ${resources.getString(R.string.rr2)}\n ${resources.getString(R.string.rr3)}"
-                }
-            }
+            in 401..449 -> rocketsForReal()
+
             450L -> {
                 anim()
-                classbinding.Text.rotationX = 45f
-                classbinding.Text.textSize = 50f
-                classbinding.Text.setText(R.string.n)
+                nuke666()
             }
-            in 451..499 -> {
-                classbinding.Text.rotationX = 45f
-                classbinding.Text.textSize = 50f
-                classbinding.Text.setText(R.string.n)
-            }
+            in 451..499 -> nuke666()
+
             in 500..549 -> {
                 classbinding.Text.visibility = View.INVISIBLE
                 classbinding.boom.setImageResource(R.drawable.bob)
                 classbinding.boom.visibility = View.VISIBLE
             }
+
             550L -> {
                 anim()
-                classbinding.boom.visibility = View.GONE
-                classbinding.Text.rotationX = 0f
-                classbinding.Text.setText(R.string.x)
-                classbinding.Text.visibility = View.VISIBLE
+                X()
             }
-            in 551..599 -> {
-                classbinding.boom.visibility = View.GONE
-                classbinding.Text.rotationX = 0f
-                classbinding.Text.setText(R.string.x)
-                classbinding.Text.visibility = View.VISIBLE
-            }
+            in 551..599 -> X()
+
             600L -> {
                 anim()
-                classbinding.Text.setText(R.string.pp2)
-                classbinding.Text.rotationX = 45f
-                classbinding.Text.textSize = 50f
+                putinPhone2()
             }
+
             666L -> {
                 anim()
                 classbinding.Text.rotationX = 0f
                 classbinding.Text.setText(R.string.hell)
                 classbinding.Text.textSize = 40f
             }
+
             777L -> {
                 anim()
                 classbinding.Text.setText(R.string.m)
                 classbinding.Text.rotationX = 45f
                 classbinding.Text.textSize = 50f
             }
+
             1000L -> {
                 anim()
                 mediaPlayer = MediaPlayer.create(this, R.raw.kidcheer)
                 mediaPlayer.start()
                 classbinding.Text.setText(R.string.str)
             }
+
             1488L -> {
                 anim()
                 mediaPlayer = MediaPlayer.create(this, R.raw.nosehonk)
                 mediaPlayer.start()
                 classbinding.Text.setText(R.string.ua)
             }
+
             10000L -> {
                 anim()
                 mediaPlayer = MediaPlayer.create(this, R.raw.kidcheer)
@@ -229,12 +208,44 @@ class MainActivity : AppCompatActivity(){
                 classbinding.Text.textSize = 40f
                 classbinding.Text.setText(R.string.ps)
             }
-            else -> {
-                classbinding.Text.setText(R.string.pp2)
-                classbinding.Text.rotationX = 45f
-                classbinding.Text.textSize = 50f
-            }
+            else -> putinPhone2()
         }
+    }
+
+    fun toTheLastUkranian(){
+        classbinding.boom.visibility = View.GONE
+        classbinding.Text.rotationX = 0f
+        classbinding.Text.textSize = 35f
+        classbinding.Text.text = "${resources.getString(R.string.l1)}\n    ${resources.getString(R.string.l2)}"
+        classbinding.Text.visibility = View.VISIBLE
+    }
+
+    fun rocketsForReal(){
+        if (isLand()){
+            classbinding.Text.text = "${resources.getString(R.string.rr1)} ${resources.getString(R.string.rr2)} ${resources.getString(R.string.rr3)}"
+        }
+        else{
+            classbinding.Text.text = "${resources.getString(R.string.rr1)}\n ${resources.getString(R.string.rr2)}\n ${resources.getString(R.string.rr3)}"
+        }
+    }
+
+    fun nuke666(){
+        classbinding.Text.rotationX = 45f
+        classbinding.Text.textSize = 50f
+        classbinding.Text.setText(R.string.n)
+    }
+
+    fun X(){
+        classbinding.boom.visibility = View.GONE
+        classbinding.Text.rotationX = 0f
+        classbinding.Text.setText(R.string.x)
+        classbinding.Text.visibility = View.VISIBLE
+    }
+
+    fun putinPhone2(){
+        classbinding.Text.setText(R.string.pp2)
+        classbinding.Text.rotationX = 45f
+        classbinding.Text.textSize = 50f
     }
 
     fun anim(){

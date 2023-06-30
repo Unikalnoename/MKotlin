@@ -3,6 +3,7 @@
 package com.example.mkotlin
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,6 +28,22 @@ class settings : AppCompatActivity() {
         classbinding.buttonS.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.appearance_scale))
         classbinding.buttonR.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.appearance_scale))
         classbinding.buttonLU.startAnimation(AnimationUtils.loadAnimation(applicationContext, R.anim.appearance_scale))
+    }
+
+    fun toMain(v: View){
+        newAct()
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        @Suppress("DEPRECATION")
+        super.onBackPressed()
+        newAct()
+    }
+
+    fun newAct(){
+        val act = Intent(this, MainActivity::class.java)
+        startActivity(act)
     }
 
     fun toKiev(v: View){
