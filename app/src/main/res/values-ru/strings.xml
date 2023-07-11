@@ -42,4 +42,5 @@
     <string name="Rovno">Ровно</string>
     <string name="Lutsk">Луцк</string>
     <string name="Dnipro">Днепр</string>
+    <string name="nocomm">БЕЗ коментариев</string>
 </resources>

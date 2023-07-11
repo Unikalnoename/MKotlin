@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<translate android:duration="800"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/anticipate_overshoot_interpolator"
+    android:fromXDelta="77%"
+    android:toXDelta="0" />

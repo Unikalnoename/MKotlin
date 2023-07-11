@@ -14,10 +14,10 @@
         android:theme="@style/Theme.MKotlin"
         tools:targetApi="31">
         <activity
-            android:name=".settings"
+            android:name=".Settings"
             android:exported="false" />
         <activity
-            android:name=".activity_question"
+            android:name=".Question"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

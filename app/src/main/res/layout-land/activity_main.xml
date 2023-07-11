@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="370dp"
+        android:layout_height="210dp"
+        android:onClick="lol"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <Button
         android:id="@+id/btn2"
         android:layout_width="wrap_content"
@@ -27,10 +39,11 @@
         android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="clicks_and_all_that"
+        android:onClick="clicksAndAllThat"
         android:text="@string/tex2"
         android:textColor="@color/red"
         android:textSize="35.5715sp"
+        android:elevation="1dp"
         app:layout_constraintBottom_toTopOf="@+id/btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
@@ -74,7 +87,7 @@
         android:layout_width="300sp"
         android:layout_height="250sp"
         android:contentDescription="@string/err"
-        android:onClick="lol_boom"
+        android:onClick="lolBoom"
         android:scaleType="fitXY"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

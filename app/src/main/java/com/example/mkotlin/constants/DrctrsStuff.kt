@@ -1,16 +1,20 @@
-package com.example.mkotlin
+package com.example.mkotlin.constants
 
-object drctrs_stuff {
+object DrctrsStuff {
 
     // OBRECHENIE
     const val drctr_ua = "Zelensky"
     const val drctr_ru = "Putin"
     const val drctr_us = "Biden"
+    const val drctr_fr = "Macron"
+    const val drctr_nk = "Un"
 
     // OBRECHONNOST
     const val drctr_ua_cn = "Dead"
     const val drctr_ru_cn = "Alive"
     const val drctr_us_cn = "Critical"
+    const val drctr_fr_cn = "Respond"
+    const val drctr_nk_cn = "Kaboom"
 
     // OBRECHENIE
     const val nuke = "nuke"
@@ -18,7 +22,8 @@ object drctrs_stuff {
 
     //STUFF
     var isclick = false
-    val listOfShame = listOf<String>("слава украине", "Слава украине", "слава Украине",
+    lateinit var city_was: String
+    val listOfShame = listOf("слава украине", "Слава украине", "слава Украине",
         "Слава Украине", "Слава Україні", "слава Україні", "слава україні", "Слава україні",
         "героям слава", "Героям слава", "героям слава", "Героям слава", "Слава нации", "слава нации",
         "слава нації", "Слава нації", "Москаляку на гиляку", "москаляку на гиляку", "москаляку на гілляку",
