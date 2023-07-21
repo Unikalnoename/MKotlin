@@ -167,25 +167,35 @@ class MainActivity : AppCompatActivity(){
             in 551..599 -> classbinding.Text.setText(R.string.x)
 
             600L -> {
-                classbinding.Text.visibility = View.GONE
                 classbinding.videoView.visibility = View.VISIBLE
-                classbinding.videoView.setVideoPath("android.resource://" + packageName + "/" + R.raw.zflix)
-                classbinding.videoView.start()
-                classbinding.videoView.setOnPreparedListener {mp -> mp!!.isLooping = true}
+                classbinding.Text.visibility = View.GONE
+                video(R.raw.zflix)
             }
 
             650L -> {
-                classbinding.videoView.visibility = View.GONE
-                classbinding.Text.visibility = View.VISIBLE
-                anim(classbinding.Text, R.anim.change)
-                putinPhone2()
+                video(R.raw.pd)
             }
 
             666L -> {
+                classbinding.videoView.visibility = View.GONE
+                classbinding.Text.visibility = View.VISIBLE
                 anim(classbinding.Text, R.anim.change)
                 classbinding.Text.rotationX = 0f
                 classbinding.Text.setText(R.string.hell)
                 classbinding.Text.textSize = 40f
+            }
+
+            667L -> {
+                classbinding.Text.visibility = View.GONE
+                classbinding.videoView.visibility = View.VISIBLE
+                video(R.raw.pd)
+            }
+
+            700L -> {
+                classbinding.Text.visibility = View.VISIBLE
+                classbinding.videoView.visibility = View.GONE
+                anim(classbinding.Text, R.anim.change)
+                putinPhone2()
             }
 
             777L -> {
@@ -222,6 +232,12 @@ class MainActivity : AppCompatActivity(){
             }
             else -> putinPhone2()
         }
+    }
+
+    private fun video(res: Int){
+        classbinding.videoView.setVideoPath("android.resource://$packageName/$res")
+        classbinding.videoView.start()
+        classbinding.videoView.setOnPreparedListener {mp -> mp!!.isLooping = true}
     }
 
     private fun image(res: Int){
