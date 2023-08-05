@@ -7,7 +7,6 @@
     <string name="editnuke">Code?:</string>
     <string name="NO">NO</string>
     <string name="YES">Yes</string>
-    <string name="err">Image loading error</string>
     <string name="shell">Attacks:</string>
     <string name="good">GOOD</string>
     <string name="mgood">MEGAGOOD</string>
@@ -53,4 +52,9 @@
     <string name="Lutsk">Lutsk</string>
     <string name="Dnipro">Dnipro</string>
     <string name="nocomm">NO comments</string>
+    <string name="Odessa">Odessa</string>
+    <string name="description_image">Ka-boom</string>
+    <string name="description_home">Home</string>
+    <string name="description_list">List of cities</string>
+    <string name="description_exit">Exiting the application</string>
 </resources>

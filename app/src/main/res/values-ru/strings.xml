@@ -5,7 +5,6 @@
     <string name="editnuke">Код?:</string>
     <string name="NO">НЕТ</string>
     <string name="YES">Да</string>
-    <string name="err">Ошибка загрузки изображения</string>
     <string name="shell">"Обстрелов:"</string>
     <string name="good">ХОРОШ</string>
     <string name="mgood">МЕГАХОРОШ</string>
@@ -43,4 +42,9 @@
     <string name="Lutsk">Луцк</string>
     <string name="Dnipro">Днепр</string>
     <string name="nocomm">БЕЗ коментариев</string>
+    <string name="Odessa">Одессу</string>
+    <string name="description_image">Ба-бах</string>
+    <string name="description_home">Главная</string>
+    <string name="description_list">Список городов</string>
+    <string name="description_exit">Выход из приложения</string>
 </resources>

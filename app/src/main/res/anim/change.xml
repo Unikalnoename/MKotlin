@@ -6,6 +6,3 @@
     android:toYDelta="-75"
     android:repeatCount="1"
     android:repeatMode="reverse" />
-
-
-
