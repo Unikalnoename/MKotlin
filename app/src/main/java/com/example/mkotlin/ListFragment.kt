@@ -35,7 +35,7 @@ class ListFragment : Fragment() {
         tab.getTabAt(0)?.select()
     }
 
-    private fun anim(v: View, res: Int){
+    private fun anim(v: View, res: Int) {
         anim(v,res, this.activity)
     }
 

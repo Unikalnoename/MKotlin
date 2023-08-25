@@ -26,7 +26,7 @@ object DrctrsStuff {
     lateinit var city_was: String
 
     val listOfGlory = listOf("слав", "glory", "москал")
-    val listOfUa = listOf("укра", "ukrain", "зсу", "всу", "apu", "afu", "uaf",
+    val listOfUa = listOf("укра", " ua", "ukrain", "зсу", "всу", "apu", "afu", "uaf",
         "нации", "нації", "гиляк", "гілляк", "гилляк", "гіляк")
     val listNorm = listOf("россии", "russ", "белорус", "belaru")
 }

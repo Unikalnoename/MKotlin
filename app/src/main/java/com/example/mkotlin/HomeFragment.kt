@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
         classbinding.btn.setOnClickListener {click(it)}
         classbinding.btn2?.setOnClickListener{click(it)}
         pref = this.activity?.getSharedPreferences("MEMORY", Context.MODE_PRIVATE)
-        if (isLand(resources)){
+        if (isLand(resources)) {
             classbinding.btn2?.let{anim(it, R.anim.btn_right_anim)}
             anim(classbinding.btn, R.anim.btn_left_anim)
         }
@@ -44,18 +44,18 @@ class HomeFragment : Fragment() {
         return classbinding.root
     }
 
-    fun anim(v: View, res: Int){
+    fun anim(v: View, res: Int) {
         anim(v, res, this.activity)
     }
 
     @SuppressLint("SetTextI18n")
     fun clicksAndAllThat(v: View) {
         anim(v, R.anim.press)
-        if (!click){
+        if (!click) {
             click = true
             classbinding.text2.text = "${resources.getString(R.string.rec)} ${pref?.getLong("count_max", 0)!!}"
         }
-        else{
+        else {
             click = false
             classbinding.text2.text = "${resources.getString(R.string.shell)} $count"
         }
@@ -67,7 +67,7 @@ class HomeFragment : Fragment() {
         tab.getTabAt(1)?.select()
     }
 
-    private fun lolBoom (@Suppress("UNUSED_PARAMETER") v: View){
+    private fun lolBoom (@Suppress("UNUSED_PARAMETER") v: View) {
         sound(R.raw.explosion)
         context?.let {vibro(it, 1500)}
         for (id in listOf(classbinding.text2, classbinding.boom, classbinding.btn2, classbinding.btn))
@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    fun click (v: View){
+    fun click (v: View) {
         DrctrsStuff.city_was = pref?.getString("city_now", resources.getString(R.string.Kyiv)).toString()
         anim(v, R.anim.press)
         context?.let {vibro(it, 100)}
@@ -85,193 +85,300 @@ class HomeFragment : Fragment() {
         if (DrctrsStuff.is_nuke)
             count += 100
         classbinding.text2.text = "${resources.getString(R.string.shell)} ${++count}"
-        if (pref?.getLong("count_max", 0)!! < count){
+        if (pref?.getLong("count_max", 0)!! < count) {
             pref?.edit()?.putLong("count_max", count)?.apply()
-            if (!showed && count > 1){
+            if (!showed && count > 1) {
                 sound(R.raw.omg)
                 Toast.makeText(this.activity, resources.getString(R.string.newrec), Toast.LENGTH_SHORT).show()
                 showed = true
                 anim(classbinding.text2, R.anim.record)
             }
         }
-        when(count){
-            1L -> {
-                if (!DrctrsStuff.isclick)
-                    Toast.makeText(this.activity, resources.getString(R.string.toast), Toast.LENGTH_SHORT).show()
-                DrctrsStuff.isclick = true
-                classbinding.Text.isClickable = true
-                classbinding.Text.setText(R.string.app_name)
-                classbinding.Text.rotationX = 45f
-                classbinding.Text.textSize = 50f
+        if (!DrctrsStuff.is_nuke) {
+            when (count) {
+                1L -> {
+                    if (!DrctrsStuff.isclick)
+                        Toast.makeText(this.activity, resources.getString(R.string.toast), Toast.LENGTH_SHORT).show()
+                    DrctrsStuff.isclick = true
+                    classbinding.Text.isClickable = true
+                    classbinding.Text.setText(R.string.app_name)
+                    classbinding.Text.rotationX = 45f
+                    classbinding.Text.textSize = 50f
+                }
+
+                in 2..49 -> classbinding.Text.setText(R.string.app_name)
+
+                50L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    classbinding.Text.setText(R.string.good)
+                }
+
+                in 51..99 -> classbinding.Text.setText(R.string.good)
+
+                100L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    classbinding.Text.setText(R.string.mgood)
+                }
+
+                in 101..149 -> classbinding.Text.setText(R.string.mgood)
+
+                150L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    classbinding.Text.setText(R.string.rez)
+                }
+
+                in 151..199 -> classbinding.Text.setText(R.string.rez)
+
+                200L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    classbinding.Text.setText(R.string.hlop)
+                }
+
+                in 201..249 -> classbinding.Text.setText(R.string.hlop)
+
+                250L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    classbinding.Text.setText(R.string.ab)
+                }
+
+                in 251..299 -> classbinding.Text.setText(R.string.ab)
+
+                in 300..349 -> image(R.drawable.boom)
+
+                350L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    classbinding.boom.visibility = View.GONE
+                    classbinding.Text.rotationX = 0f
+                    classbinding.Text.textSize = 35f
+                    classbinding.Text.visibility = View.VISIBLE
+                    classbinding.Text.text = "${resources.getString(R.string.l1)}\n    ${resources.getString(R.string.l2)}"
+                }
+
+                in 351..399 -> classbinding.Text.text = "${resources.getString(R.string.l1)}\n    ${resources.getString(R.string.l2)}"
+
+                400L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    rocketsForReal()
+                }
+
+                in 401..403 -> rocketsForReal()
+
+                404L -> uaMoment()
+
+                405L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    rocketsForReal()
+                }
+
+                in 406..449 -> rocketsForReal()
+
+                450L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    classbinding.Text.rotationX = 45f
+                    classbinding.Text.textSize = 50f
+                    classbinding.Text.setText(R.string.n)
+                }
+
+                in 451..499 -> classbinding.Text.setText(R.string.n)
+
+                in 500..549 -> image(R.drawable.bob)
+
+                550L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    classbinding.boom.visibility = View.GONE
+                    classbinding.Text.rotationX = 0f
+                    classbinding.Text.setText(R.string.x)
+                    classbinding.Text.visibility = View.VISIBLE
+                }
+
+                in 551..599 -> classbinding.Text.setText(R.string.x)
+
+                600L -> {
+                    classbinding.videoView.visibility = View.VISIBLE
+                    classbinding.Text.visibility = View.GONE
+                    video(R.raw.zflix)
+                }
+
+                650L -> video(R.raw.pd)
+
+                666L -> {
+                    classbinding.videoView.visibility = View.GONE
+                    classbinding.Text.visibility = View.VISIBLE
+                    anim(classbinding.Text, R.anim.change)
+                    classbinding.Text.rotationX = 0f
+                    classbinding.Text.setText(R.string.hell)
+                    classbinding.Text.textSize = 40f
+                }
+
+                667L -> {
+                    classbinding.Text.visibility = View.GONE
+                    classbinding.videoView.visibility = View.VISIBLE
+                    video(R.raw.pd)
+                }
+
+                700L -> {
+                    classbinding.Text.visibility = View.VISIBLE
+                    classbinding.videoView.visibility = View.GONE
+                    anim(classbinding.Text, R.anim.change)
+                    putinPhone2()
+                }
+
+                777L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    classbinding.Text.setText(R.string.m)
+                    classbinding.Text.rotationX = 45f
+                    classbinding.Text.textSize = 50f
+                }
+
+                778L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    putinPhone2()
+                }
+
+                1000L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    sound(R.raw.kidcheer)
+                    classbinding.Text.setText(R.string.str)
+                }
+
+                1001L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    putinPhone2()
+                }
+
+                1488L -> uaMoment()
+
+                1489L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    putinPhone2()
+                }
+
+                10000L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    sound(R.raw.kidcheer)
+                    classbinding.Text.rotationX = 0f
+                    classbinding.Text.textSize = 40f
+                    classbinding.Text.setText(R.string.ps)
+                }
+
+                10001L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    putinPhone2()
+                }
+
+                100000L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    sound(R.raw.gigatheme)
+                    classbinding.Text.setText(R.string.nocomm)
+                }
+
+                100001L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    putinPhone2()
+                }
+
+                else -> putinPhone2()
             }
-            in 2..49 -> classbinding.Text.setText(R.string.app_name)
+        }
+        else {
+            DrctrsStuff.isclick = false
+            classbinding.Text.rotationX = 45f
+            classbinding.Text.textSize = 50f
+            when(count) {
+                101L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    classbinding.Text.setText(R.string.mgood)
+                }
 
-            50L -> {
-                anim(classbinding.Text, R.anim.change)
-                classbinding.Text.setText(R.string.good)
+                202L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    classbinding.Text.setText(R.string.hlop)
+                }
+
+                303L -> image(R.drawable.boom)
+
+                404L -> {
+                    classbinding.boom.visibility = View.GONE
+                    classbinding.Text.visibility = View.VISIBLE
+                    uaMoment()
+                }
+
+                505L -> image(R.drawable.bob)
+
+                606L -> {
+                    classbinding.boom.visibility = View.GONE
+                    classbinding.videoView.visibility = View.VISIBLE
+                    classbinding.Text.visibility = View.GONE
+                    video(R.raw.zflix)
+                }
+
+                707L -> {
+                    classbinding.Text.visibility = View.VISIBLE
+                    classbinding.videoView.visibility = View.GONE
+                    anim(classbinding.Text, R.anim.change)
+                    putinPhone2()
+                }
+
+                1010L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    sound(R.raw.kidcheer)
+                    classbinding.Text.setText(R.string.str)
+                }
+
+                1111L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    putinPhone2()
+                }
+
+                10100L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    sound(R.raw.kidcheer)
+                    classbinding.Text.rotationX = 0f
+                    classbinding.Text.textSize = 40f
+                    classbinding.Text.setText(R.string.ps)
+                }
+
+                10201L -> {
+                    anim(classbinding.Text, R.anim.change)
+                    putinPhone2()
+                }
             }
-            in 51..99 -> classbinding.Text.setText(R.string.good)
-
-            100L -> {
-                anim(classbinding.Text, R.anim.change)
-                classbinding.Text.setText(R.string.mgood)
-            }
-            in 101..149 -> classbinding.Text.setText(R.string.mgood)
-
-            150L -> {
-                anim(classbinding.Text, R.anim.change)
-                classbinding.Text.setText(R.string.rez)
-            }
-            in 151..199 -> classbinding.Text.setText(R.string.rez)
-
-            200L -> {
-                anim(classbinding.Text, R.anim.change)
-                classbinding.Text.setText(R.string.hlop)
-            }
-            in 201..249 -> classbinding.Text.setText(R.string.hlop)
-
-            250L -> {
-                anim(classbinding.Text, R.anim.change)
-                classbinding.Text.setText(R.string.ab)
-            }
-            in 251..299 -> classbinding.Text.setText(R.string.ab)
-
-            in 300..349 -> image(R.drawable.boom)
-
-            350L -> {
-                anim(classbinding.Text, R.anim.change)
-                classbinding.boom.visibility = View.GONE
-                classbinding.Text.rotationX = 0f
-                classbinding.Text.textSize = 35f
-                classbinding.Text.visibility = View.VISIBLE
-                classbinding.Text.text = "${resources.getString(R.string.l1)}\n    ${resources.getString(R.string.l2)}"
-            }
-            in 351..399 -> classbinding.Text.text = "${resources.getString(R.string.l1)}\n    ${resources.getString(R.string.l2)}"
-
-            400L -> {
-                anim(classbinding.Text, R.anim.change)
-                rocketsForReal()
-            }
-            in 401..403 -> rocketsForReal()
-
-            404L -> uaMoment()
-
-            in 405..449 -> rocketsForReal()
-
-            450L -> {
-                anim(classbinding.Text, R.anim.change)
-                classbinding.Text.rotationX = 45f
-                classbinding.Text.textSize = 50f
-                classbinding.Text.setText(R.string.n)
-            }
-            in 451..499 -> classbinding.Text.setText(R.string.n)
-
-            in 500..549 -> image(R.drawable.bob)
-
-            550L -> {
-                anim(classbinding.Text, R.anim.change)
-                classbinding.boom.visibility = View.GONE
-                classbinding.Text.rotationX = 0f
-                classbinding.Text.setText(R.string.x)
-                classbinding.Text.visibility = View.VISIBLE
-            }
-            in 551..599 -> classbinding.Text.setText(R.string.x)
-
-            600L -> {
-                classbinding.videoView.visibility = View.VISIBLE
-                classbinding.Text.visibility = View.GONE
-                video(R.raw.zflix)
-            }
-
-            650L -> video(R.raw.pd)
-
-            666L -> {
-                classbinding.videoView.visibility = View.GONE
-                classbinding.Text.visibility = View.VISIBLE
-                anim(classbinding.Text, R.anim.change)
-                classbinding.Text.rotationX = 0f
-                classbinding.Text.setText(R.string.hell)
-                classbinding.Text.textSize = 40f
-            }
-
-            667L -> {
-                classbinding.Text.visibility = View.GONE
-                classbinding.videoView.visibility = View.VISIBLE
-                video(R.raw.pd)
-            }
-
-            700L -> {
-                classbinding.Text.visibility = View.VISIBLE
-                classbinding.videoView.visibility = View.GONE
-                anim(classbinding.Text, R.anim.change)
-                putinPhone2()
-            }
-
-            777L -> {
-                anim(classbinding.Text, R.anim.change)
-                classbinding.Text.setText(R.string.m)
-                classbinding.Text.rotationX = 45f
-                classbinding.Text.textSize = 50f
-            }
-
-            1000L -> {
-                anim(classbinding.Text, R.anim.change)
-                sound(R.raw.kidcheer)
-                classbinding.Text.setText(R.string.str)
-            }
-
-            1488L -> uaMoment()
-
-            10000L -> {
-                anim(classbinding.Text, R.anim.change)
-                sound(R.raw.kidcheer)
-                classbinding.Text.rotationX = 0f
-                classbinding.Text.textSize = 40f
-                classbinding.Text.setText(R.string.ps)
-            }
-
-            100000L -> {
-                anim(classbinding.Text, R.anim.change)
-                sound(R.raw.gigatheme)
-                classbinding.Text.setText(R.string.nocomm)
-            }
-            else -> putinPhone2()
         }
     }
 
-    private fun uaMoment(){
+    private fun uaMoment() {
         anim(classbinding.Text, R.anim.change)
         sound(R.raw.nosehonk)
         classbinding.Text.setText(R.string.ua)
     }
 
-    private fun putinPhone2(){
+    private fun putinPhone2() {
         classbinding.Text.setText(R.string.pp2)
         classbinding.Text.rotationX = 45f
         classbinding.Text.textSize = 50f
     }
 
-    private fun video(res: Int){
+    private fun video(res: Int) {
         classbinding.videoView.setVideoPath("android.resource://${this.activity?.packageName}/$res")
         classbinding.videoView.start()
         classbinding.videoView.setOnPreparedListener {mp -> mp!!.isLooping = true}
     }
 
     @SuppressLint("SetTextI18n")
-    private fun rocketsForReal(){
+    private fun rocketsForReal() {
         if (isLand(resources))
             classbinding.Text.text = "${resources.getString(R.string.rr1)} ${resources.getString(R.string.rr2)} ${resources.getString(R.string.rr3)}"
         else
             classbinding.Text.text = "${resources.getString(R.string.rr1)}\n ${resources.getString(R.string.rr2)}\n ${resources.getString(R.string.rr3)}"
     }
 
-    private fun image(res: Int){
+    private fun image(res: Int) {
         classbinding.Text.visibility = View.INVISIBLE
         classbinding.boom.setImageResource(res)
         classbinding.boom.visibility = View.VISIBLE
     }
 
-    private fun sound(res: Int){
+    private fun sound(res: Int) {
         sound(res, this.activity)
     }
 
@@ -280,7 +387,7 @@ class HomeFragment : Fragment() {
         super.onResume()
         for (id in listOf(classbinding.btn, classbinding.btn2))
             id?.text = "${resources.getString(R.string.bomb)} ${pref?.getString("city_now", resources.getString(R.string.Kyiv))}"
-        if (DrctrsStuff.isclick){
+        if (DrctrsStuff.isclick) {
             showed = false
             classbinding.boom.visibility = View.GONE
             classbinding.Text.visibility = View.VISIBLE

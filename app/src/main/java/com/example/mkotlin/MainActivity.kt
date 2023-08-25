@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabLayout
 class MainActivity : AppCompatActivity(){
     private lateinit var classbinding:ActivityMainBinding
 
-    override fun onCreate(name: Bundle?){
+    override fun onCreate(name: Bundle?) {
         super.onCreate(name)
         classbinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(classbinding.root)

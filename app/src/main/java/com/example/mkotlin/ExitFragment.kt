@@ -41,11 +41,11 @@ class ExitFragment : Fragment() {
         return classbinding.root
     }
 
-    private fun pressNuke(){
+    private fun pressNuke() {
         anim(classbinding.btnAcp, R.anim.change)
     }
 
-    private fun back(v: View){
+    private fun back(v: View) {
         vibration(v)
         val tab = requireActivity().findViewById<View>(R.id.tabLayout) as TabLayout
         tab.getTabAt(0)?.select()
@@ -58,16 +58,17 @@ class ExitFragment : Fragment() {
         classbinding.btnAcp.visibility = View.GONE
         classbinding.nukeText.text = null
         classbinding.nukeText.visibility = View.GONE
+        classbinding.editText.visibility = View.GONE
     }
 
-    private fun noNo(v: View){
+    private fun noNo(v: View) {
         val anim = AnimationUtils.loadAnimation(this.activity, R.anim.record)
         anim.repeatCount = 3
         anim.duration = 100
         v.startAnimation(anim)
     }
 
-    private fun press (@Suppress("UNUSED_PARAMETER") v: View){
+    private fun press (@Suppress("UNUSED_PARAMETER") v: View) {
         classbinding.textView.setText(R.string.sure)
         classbinding.btnAcp.visibility = View.VISIBLE
         if (!click)
@@ -77,15 +78,18 @@ class ExitFragment : Fragment() {
         click = true
     }
 
-    private fun yes(v: View){
+    private fun yes(v: View) {
+        val anim = AnimationUtils.loadAnimation(this.activity ,R.anim.alpha)
+        anim.duration = 400
+        classbinding.editText.startAnimation(anim)
         vibration(v)
-        classbinding.btnYes.visibility = View.GONE
         classbinding.editText.visibility = View.VISIBLE
+        classbinding.btnYes.visibility = View.GONE
     }
 
-    private fun fo(ani: Int){
+    private fun fo(ani: Int) {
         var so:Long = 0
-        for (id in listOf(classbinding.btnNo, classbinding.btnYes)){
+        for (id in listOf(classbinding.btnNo, classbinding.btnYes)) {
             val anim = AnimationUtils.loadAnimation(this.activity, ani)
             anim.startOffset = so
             id.startAnimation(anim)
@@ -94,10 +98,10 @@ class ExitFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    fun accept(v: View){
+    fun accept(v: View) {
         anim(v, R.anim.press)
         vibration(v)
-        when(classbinding.editText.text.toString()){
+        when(classbinding.editText.text.toString()) {
             "" -> classbinding.editText.hint = resources.getString(R.string.why)
             DrctrsStuff.drctr_ua -> {
                 sound(R.raw.kidcheer)
@@ -135,11 +139,11 @@ class ExitFragment : Fragment() {
                     classbinding.textView.setText(R.string.gena)
                     classbinding.btnNo.visibility = View.GONE
                 }
-                else{
+                else {
                     classbinding.textView.textSize = 25f
                     classbinding.textView.setText(R.string.ercode)
                 }
-                if(classbinding.nukeText.text.toString() == ""){
+                if(classbinding.nukeText.text.toString() == "") {
                     classbinding.textView.setText(R.string.q)
                     classbinding.btnAcp.setText(R.string.q)
                     classbinding.btnNo.setText(R.string.q)
@@ -149,7 +153,7 @@ class ExitFragment : Fragment() {
         }
     }
 
-    private fun check(){
+    private fun check() {
         var indexUa = 0
         var indexGlory = 0
         var haram1 = false
@@ -160,28 +164,28 @@ class ExitFragment : Fragment() {
         val sizeGlory = DrctrsStuff.listOfGlory.size -1
         val sizeNorm = DrctrsStuff.listNorm.size -1
 
-        for (i in 0..sizeGlory){
+        for (i in 0..sizeGlory) {
             if (classbinding.editText.text.contains(DrctrsStuff.listOfGlory[i], ignoreCase = true)){
                 haram1 = true
                 indexGlory = classbinding.editText.text.indexOf(DrctrsStuff.listOfGlory[i], ignoreCase = true)
             }
         }
 
-        for (i in 0..sizeUa){
+        for (i in 0..sizeUa) {
             if (classbinding.editText.text.contains(DrctrsStuff.listOfUa[i], ignoreCase = true)){
                 haram2 = true
                 indexUa = classbinding.editText.text.indexOf(DrctrsStuff.listOfUa[i], ignoreCase = true)
             }
         }
 
-        for (i in 0..sizeNorm){
+        for (i in 0..sizeNorm) {
             if (classbinding.editText.text.substring(indexGlory..indexUa).contains(DrctrsStuff.listNorm[i], ignoreCase = true)){
                 norm = true
             }
         }
 
-        if (!norm){
-            if (haram1 && haram2){
+        if (!norm) {
+            if (haram1 && haram2) {
                 sound(R.raw.hellno)
                 classbinding.btnAcp.textSize = 50f
                 classbinding.btnNo.textSize = 50f
@@ -192,20 +196,20 @@ class ExitFragment : Fragment() {
                 DrctrsStuff.is_nuke = false
                 pref?.edit()?.clear()?.apply()
             }
-            else{
+            else {
                 exitProcess(0)
             }
         }
-        else{
+        else {
             exitProcess(0)
         }
     }
 
-    private fun sound(res: Int){
+    private fun sound(res: Int) {
         sound(res, this.activity)
     }
 
-    private fun anim(v: View, res: Int){
+    private fun anim(v: View, res: Int) {
         anim(v, res, this.activity)
     }
 }
