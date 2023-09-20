@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
         classbinding.text2.setOnClickListener {clicksAndAllThat(it)}
         classbinding.Text.setOnClickListener {lol()}
         classbinding.videoView.setOnClickListener {lol()}
-        classbinding.boom.setOnClickListener {lolBoom(it)}
+        classbinding.boom.setOnClickListener {lolBoom() }
         classbinding.btn.setOnClickListener {click(it)}
         classbinding.btn2?.setOnClickListener{click(it)}
         pref = this.activity?.getSharedPreferences("MEMORY", Context.MODE_PRIVATE)
@@ -67,7 +67,7 @@ class HomeFragment : Fragment() {
         tab.getTabAt(1)?.select()
     }
 
-    private fun lolBoom (@Suppress("UNUSED_PARAMETER") v: View) {
+    private fun lolBoom() {
         sound(R.raw.explosion)
         context?.let {vibro(it, 1500)}
         for (id in listOf(classbinding.text2, classbinding.boom, classbinding.btn2, classbinding.btn))

@@ -20,14 +20,12 @@ fun vibration(v: View) {
     v.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
 }
 
-fun isLand(resources: Resources): Boolean {
-    return resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-}
+fun isLand(resources: Resources): Boolean = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
 fun sound(res: Int, context: FragmentActivity?) {
     MediaPlayer.create(context, res).start()
 }
 
-fun anim(v: View, res: Int, context: FragmentActivity?) {
+fun anim(v: View, res: Int, context: Context?) {
     v.startAnimation(AnimationUtils.loadAnimation(context, res))
 }

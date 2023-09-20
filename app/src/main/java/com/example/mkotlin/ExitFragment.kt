@@ -30,7 +30,7 @@ class ExitFragment : Fragment() {
         classbinding.btnAcp.setOnClickListener {accept(it)}
         classbinding.btnNo.setOnClickListener {back(it)}
         classbinding.btnYes.setOnClickListener {yes(it)}
-        classbinding.editText.setOnClickListener {press(it)}
+        classbinding.editText.setOnClickListener {press()}
         classbinding.nukeText.setOnClickListener {pressNuke()}
         pref = this.activity?.getSharedPreferences("MEMORY", Context.MODE_PRIVATE)
         anim(classbinding.textView, R.anim.alpha)
@@ -68,7 +68,7 @@ class ExitFragment : Fragment() {
         v.startAnimation(anim)
     }
 
-    private fun press (@Suppress("UNUSED_PARAMETER") v: View) {
+    private fun press() {
         classbinding.textView.setText(R.string.sure)
         classbinding.btnAcp.visibility = View.VISIBLE
         if (!click)
@@ -93,7 +93,7 @@ class ExitFragment : Fragment() {
             val anim = AnimationUtils.loadAnimation(this.activity, ani)
             anim.startOffset = so
             id.startAnimation(anim)
-            so += 100
+            so += 150
         }
     }
 
@@ -179,9 +179,8 @@ class ExitFragment : Fragment() {
         }
 
         for (i in 0..sizeNorm) {
-            if (classbinding.editText.text.substring(indexGlory..indexUa).contains(DrctrsStuff.listNorm[i], ignoreCase = true)){
+            if (classbinding.editText.text.substring(indexGlory..indexUa).contains(DrctrsStuff.listNorm[i], ignoreCase = true))
                 norm = true
-            }
         }
 
         if (!norm) {
@@ -196,13 +195,11 @@ class ExitFragment : Fragment() {
                 DrctrsStuff.is_nuke = false
                 pref?.edit()?.clear()?.apply()
             }
-            else {
+            else
                 exitProcess(0)
-            }
         }
-        else {
+        else
             exitProcess(0)
-        }
     }
 
     private fun sound(res: Int) {

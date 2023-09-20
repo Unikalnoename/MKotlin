@@ -2,7 +2,7 @@ package com.example.mkotlin.constants
 
 object DrctrsStuff {
 
-    // OBRECHENIE
+    // OBRECHENNIE
     const val drctr_ua = "Zelensky"
     const val drctr_ru = "Putin"
     const val drctr_us = "Biden"
@@ -24,6 +24,8 @@ object DrctrsStuff {
     //STUFF
     var isclick = false
     lateinit var city_was: String
+    var needanimation = false
+    var appearance = true
 
     val listOfGlory = listOf("слав", "glory", "москал")
     val listOfUa = listOf("укра", " ua", "ukrain", "зсу", "всу", "apu", "afu", "uaf",
