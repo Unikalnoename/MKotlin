@@ -2,14 +2,15 @@
 
 <set android:interpolator="@android:anim/anticipate_overshoot_interpolator"
     android:shareInterpolator="true"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:startOffset="30">
 
-    <alpha android:duration="300"
+    <alpha android:duration="200"
         android:fromAlpha="0"
         android:toAlpha="1" />
 
     <translate android:duration="450"
-        android:fromXDelta="-150%"
+        android:fromXDelta="400%"
         android:toXDelta="0" />
 
 </set>

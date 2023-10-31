@@ -8,7 +8,7 @@
 
     <style name="AppModalStyle"
         parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/bottom_sheet_background</item>
+        <item name="android:background">@drawable/bottom_sheet_background_night</item>
     </style>
 
 </resources>

@@ -3,8 +3,8 @@
     <string name="Question">Дезертировать решил?</string>
     <string name="edit">Почему?</string>
     <string name="editnuke">Код?:</string>
-    <string name="NO">НЕТ</string>
-    <string name="YES">Да</string>
+    <string name="NO">НЕТ!</string>
+    <string name="YES">Да!</string>
     <string name="shell">"Обстрелов:"</string>
     <string name="good">ХОРОШ</string>
     <string name="mgood">МЕГАХОРОШ</string>
@@ -19,7 +19,7 @@
     <string name="cond">"Состояние: "</string>
     <string name="clo">Клоун!</string>
     <string name="piz">ПИЗДА!</string>
-    <string name="faq">Да пошёл ты нахуй</string>
+    <string name="faq">Да пошёл ты нахуй!</string>
     <string name="rez">Резня</string>
     <string name="hlop">Хлопки)</string>
     <string name="l1">До последнего</string>
@@ -47,4 +47,11 @@
     <string name="description_home">Главная</string>
     <string name="description_list">Список городов</string>
     <string name="description_exit">Выход из приложения</string>
+    <string name="settings">Настройки</string>
+    <string name="sound">Звуки</string>
+    <string name="vibro">Вибрация</string>
+    <string name="anim">Анимации</string>
+    <string name="to_support">Поддержать</string>
+    <string name="minus_money">*Все деньги списаны*</string>
+    <string name="notifications">Уведомления</string>
 </resources>

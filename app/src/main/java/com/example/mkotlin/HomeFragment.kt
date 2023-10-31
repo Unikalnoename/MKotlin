@@ -7,13 +7,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import com.example.mkotlin.constants.DrctrsStuff
 import com.example.mkotlin.constants.anim
 import com.example.mkotlin.constants.isLand
 import com.example.mkotlin.constants.sound
-import com.example.mkotlin.constants.vibro
+import com.example.mkotlin.constants.toast
+import com.example.mkotlin.constants.vibration
 import com.example.mkotlin.databinding.FragmentHomeBinding
 import com.google.android.material.tabs.TabLayout
 
@@ -23,13 +24,14 @@ class HomeFragment : Fragment() {
     private var count:Long = 0
     private var click = true
     private var showed = false
+    private var isenebled = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         classbinding = FragmentHomeBinding.inflate(inflater, container, false)
         classbinding.text2.setOnClickListener {clicksAndAllThat(it)}
         classbinding.Text.setOnClickListener {lol()}
         classbinding.videoView.setOnClickListener {lol()}
-        classbinding.boom.setOnClickListener {lolBoom() }
+        classbinding.boom.setOnClickListener {lolBoom()}
         classbinding.btn.setOnClickListener {click(it)}
         classbinding.btn2?.setOnClickListener{click(it)}
         pref = this.activity?.getSharedPreferences("MEMORY", Context.MODE_PRIVATE)
@@ -44,20 +46,26 @@ class HomeFragment : Fragment() {
         return classbinding.root
     }
 
-    fun anim(v: View, res: Int) {
-        anim(v, res, this.activity)
-    }
+    fun anim(v: View, res: Int) {anim(v, res, this.activity)}
 
     @SuppressLint("SetTextI18n")
     fun clicksAndAllThat(v: View) {
-        anim(v, R.anim.press)
-        if (!click) {
-            click = true
-            classbinding.text2.text = "${resources.getString(R.string.rec)} ${pref?.getLong("count_max", 0)!!}"
+        if (!isenebled) {
+            val anim = AnimationUtils.loadAnimation(this.activity, R.anim.record)
+            anim.repeatCount = 3
+            anim.duration = 100
+            anim(v, anim)
         }
         else {
-            click = false
-            classbinding.text2.text = "${resources.getString(R.string.shell)} $count"
+            anim(v, R.anim.press)
+            if (!click) {
+                click = true
+                classbinding.text2.text = "${resources.getString(R.string.rec)} ${pref?.getLong("count_max", 0)!!}"
+            }
+            else {
+                click = false
+                classbinding.text2.text = "${resources.getString(R.string.shell)} $count"
+            }
         }
     }
 
@@ -69,7 +77,7 @@ class HomeFragment : Fragment() {
 
     private fun lolBoom() {
         sound(R.raw.explosion)
-        context?.let {vibro(it, 1500)}
+        vibration(context, 1500)
         for (id in listOf(classbinding.text2, classbinding.boom, classbinding.btn2, classbinding.btn))
             id?.let{anim(it, R.anim.tremble)}
     }
@@ -78,9 +86,9 @@ class HomeFragment : Fragment() {
     fun click (v: View) {
         DrctrsStuff.city_was = pref?.getString("city_now", resources.getString(R.string.Kyiv)).toString()
         anim(v, R.anim.press)
-        context?.let {vibro(it, 100)}
+        vibration(context, 100)
         classbinding.text2.textSize = 35.5715f
-        classbinding.text2.isEnabled = true
+        isenebled = true
         click = false
         if (DrctrsStuff.is_nuke)
             count += 100
@@ -89,7 +97,7 @@ class HomeFragment : Fragment() {
             pref?.edit()?.putLong("count_max", count)?.apply()
             if (!showed && count > 1) {
                 sound(R.raw.omg)
-                Toast.makeText(this.activity, resources.getString(R.string.newrec), Toast.LENGTH_SHORT).show()
+                toast(context, resources.getString(R.string.newrec))
                 showed = true
                 anim(classbinding.text2, R.anim.record)
             }
@@ -98,7 +106,7 @@ class HomeFragment : Fragment() {
             when (count) {
                 1L -> {
                     if (!DrctrsStuff.isclick)
-                        Toast.makeText(this.activity, resources.getString(R.string.toast), Toast.LENGTH_SHORT).show()
+                        toast(context, resources.getString(R.string.toast))
                     DrctrsStuff.isclick = true
                     classbinding.Text.isClickable = true
                     classbinding.Text.setText(R.string.app_name)
@@ -378,9 +386,7 @@ class HomeFragment : Fragment() {
         classbinding.boom.visibility = View.VISIBLE
     }
 
-    private fun sound(res: Int) {
-        sound(res, this.activity)
-    }
+    private fun sound(res: Int) {sound(res, this.activity) }
 
     @SuppressLint("SetTextI18n")
     override fun onResume() {
@@ -391,7 +397,7 @@ class HomeFragment : Fragment() {
             showed = false
             classbinding.boom.visibility = View.GONE
             classbinding.Text.visibility = View.VISIBLE
-            classbinding.text2.isEnabled = false
+            isenebled = false
             count = 0
             classbinding.Text.textSize = 25f
             classbinding.Text.rotationX = 0f

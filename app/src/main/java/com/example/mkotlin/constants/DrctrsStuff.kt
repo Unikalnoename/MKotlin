@@ -24,6 +24,7 @@ object DrctrsStuff {
     //STUFF
     var isclick = false
     lateinit var city_was: String
+    lateinit var city_before: String
     var needanimation = false
     var appearance = true
 

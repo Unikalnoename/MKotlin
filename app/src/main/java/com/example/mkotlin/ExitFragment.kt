@@ -7,14 +7,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.example.mkotlin.constants.DrctrsStuff
 import com.example.mkotlin.constants.anim
 import com.example.mkotlin.constants.isLand
 import com.example.mkotlin.constants.sound
 import com.example.mkotlin.constants.vibration
-import com.example.mkotlin.constants.vibro
 import com.example.mkotlin.databinding.FragmentExitBinding
 import com.google.android.material.tabs.TabLayout
 import kotlin.system.exitProcess
@@ -41,15 +43,14 @@ class ExitFragment : Fragment() {
         return classbinding.root
     }
 
-    private fun pressNuke() {
-        anim(classbinding.btnAcp, R.anim.change)
-    }
+    private fun pressNuke() {anim(classbinding.btnAcp, R.anim.change)}
 
     private fun back(v: View) {
         vibration(v)
         val tab = requireActivity().findViewById<View>(R.id.tabLayout) as TabLayout
         tab.getTabAt(0)?.select()
         click = false
+        classbinding.btnYes.isClickable = true
         classbinding.textView.text = resources.getString(R.string.Question)
         classbinding.btnAcp.text = resources.getString(R.string.YES)
         classbinding.btnNo.text = resources.getString(R.string.NO)
@@ -65,7 +66,7 @@ class ExitFragment : Fragment() {
         val anim = AnimationUtils.loadAnimation(this.activity, R.anim.record)
         anim.repeatCount = 3
         anim.duration = 100
-        v.startAnimation(anim)
+        anim(v, anim)
     }
 
     private fun press() {
@@ -80,11 +81,23 @@ class ExitFragment : Fragment() {
 
     private fun yes(v: View) {
         val anim = AnimationUtils.loadAnimation(this.activity ,R.anim.alpha)
-        anim.duration = 400
-        classbinding.editText.startAnimation(anim)
+        anim.duration = 800
+        anim(classbinding.editText, anim)
         vibration(v)
+        v.isClickable = false
         classbinding.editText.visibility = View.VISIBLE
-        classbinding.btnYes.visibility = View.GONE
+        val anim2 = AnimationUtils.loadAnimation(this.activity, R.anim.minus_alpha_press)
+        anim2.setAnimationListener(object : AnimationListener {
+            override fun onAnimationStart(animation: Animation) {}
+
+            override fun onAnimationRepeat(animation: Animation) {}
+
+            override fun onAnimationEnd(animation: Animation) {v.visibility = View.GONE}
+        })
+        if (pref?.getBoolean("switch_anim", true) == true)
+            anim(v, anim2)
+        else
+            v.visibility = View.GONE
     }
 
     private fun fo(ani: Int) {
@@ -92,7 +105,7 @@ class ExitFragment : Fragment() {
         for (id in listOf(classbinding.btnNo, classbinding.btnYes)) {
             val anim = AnimationUtils.loadAnimation(this.activity, ani)
             anim.startOffset = so
-            id.startAnimation(anim)
+            anim(id, anim)
             so += 150
         }
     }
@@ -124,26 +137,32 @@ class ExitFragment : Fragment() {
             }
 
             DrctrsStuff.drctr_nk -> {
+                for (id in listOf(classbinding.btnAcp, classbinding.btnNo, classbinding.editText, classbinding.textView))
+                    anim(id, R.anim.tremble)
                 sound(R.raw.explosion)
-                context?.let {vibro(it, 1500)}
+                vibration(context, 1500)
                 classbinding.textView.text = "${resources.getString(R.string.cond)}${DrctrsStuff.drctr_nk_cn}"
             }
 
             DrctrsStuff.nuke -> {
                 classbinding.editText.visibility = View.GONE
                 classbinding.nukeText.visibility = View.VISIBLE
+                for (elm in arrayOf(classbinding.nukeText, classbinding.btnAcp, classbinding.textView,
+                    classbinding.btnNo, classbinding.btnYes, classbinding.editText))
+                    elm.typeface = context?.let {ResourcesCompat.getFont(it, R.font.serif)}
                 if (classbinding.nukeText.text.toString() == DrctrsStuff.nuke_code) {
                     classbinding.textView.textSize = 50f
                     DrctrsStuff.is_nuke = true
                     classbinding.btnAcp.setText(R.string.x)
                     classbinding.textView.setText(R.string.gena)
+                    vibration(context, 666)
                     classbinding.btnNo.visibility = View.GONE
                 }
                 else {
                     classbinding.textView.textSize = 25f
                     classbinding.textView.setText(R.string.ercode)
                 }
-                if(classbinding.nukeText.text.toString() == "") {
+                if (classbinding.nukeText.text.toString() == "") {
                     classbinding.textView.setText(R.string.q)
                     classbinding.btnAcp.setText(R.string.q)
                     classbinding.btnNo.setText(R.string.q)
@@ -202,11 +221,7 @@ class ExitFragment : Fragment() {
             exitProcess(0)
     }
 
-    private fun sound(res: Int) {
-        sound(res, this.activity)
-    }
+    private fun sound(res: Int) {sound(res, this.activity)}
 
-    private fun anim(v: View, res: Int) {
-        anim(v, res, this.activity)
-    }
+    private fun anim(v: View, res: Int) {anim(v, res, this.activity)}
 }
