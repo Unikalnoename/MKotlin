@@ -38,6 +38,7 @@
         android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/tex2"
         android:textColor="@color/red"
         android:textSize="35.5715sp"
@@ -70,13 +71,14 @@
         android:layout_height="wrap_content"
         android:rotationX="45"
         android:text="@string/app_name"
+        android:gravity="center"
         android:textColor="@color/red"
         android:textSize="49.7sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0" />
 
     <ImageView
         android:id="@+id/boom"

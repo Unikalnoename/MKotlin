@@ -4,12 +4,12 @@
     android:shareInterpolator="true"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <alpha android:duration="650"
+    <alpha android:duration="500"
         android:fromAlpha="0"
         android:toAlpha="1" />
 
     <translate android:duration="800"
-        android:fromXDelta="-110%"
+        android:fromXDelta="-105%"
         android:toXDelta="0" />
 
 </set>

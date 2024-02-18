@@ -12,8 +12,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:textColor="@color/teal_700"
-        android:textSize="30sp"
-        android:height="50sp"
+        android:textSize="25sp"
+        android:height="45sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

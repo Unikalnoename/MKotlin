@@ -22,11 +22,15 @@ object DrctrsStuff {
     var is_nuke = false
 
     //STUFF
-    var isclick = false
     lateinit var city_was: String
     lateinit var city_before: String
+    var isclick = false
     var needanimation = false
     var appearance = true
+    var is_bottom_open = false
+    var yes_pressed = false
+    var can_spinner_refresh = false
+    var current_item = 0
 
     val listOfGlory = listOf("слав", "glory", "москал")
     val listOfUa = listOf("укра", " ua", "ukrain", "зсу", "всу", "apu", "afu", "uaf",

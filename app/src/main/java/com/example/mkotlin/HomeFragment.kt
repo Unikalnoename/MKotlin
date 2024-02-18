@@ -41,8 +41,14 @@ class HomeFragment : Fragment() {
         }
         else
             anim(classbinding.btn, R.anim.appearance)
-        for (id in listOf(classbinding.text2, classbinding.Text))
-            anim(id, R.anim.alpha)
+        var so = 0L
+        for (id in listOf(classbinding.Text, classbinding.text2)) {
+            val ani = AnimationUtils.loadAnimation(context, R.anim.alpha_scale)
+            ani.startOffset = so
+            anim(id, ani)
+            so += 300
+        }
+
         return classbinding.root
     }
 
@@ -391,6 +397,21 @@ class HomeFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onResume() {
         super.onResume()
+        when (pref?.getString("city_now", resources.getString(R.string.Kyiv))!!.length) {
+            in 8..10 -> {
+                classbinding.btn.textSize = 30f
+                classbinding.btn2?.textSize = 30f
+            }
+            in 11..Int.MAX_VALUE -> {
+                classbinding.btn.textSize = 25f
+                classbinding.btn2?.textSize = 25f
+            }
+            else -> {
+                classbinding.btn.textSize = 40f
+                classbinding.btn2?.textSize = 40f
+            }
+        }
+
         for (id in listOf(classbinding.btn, classbinding.btn2))
             id?.text = "${resources.getString(R.string.bomb)} ${pref?.getString("city_now", resources.getString(R.string.Kyiv))}"
         if (DrctrsStuff.isclick) {
@@ -399,11 +420,11 @@ class HomeFragment : Fragment() {
             classbinding.Text.visibility = View.VISIBLE
             isenebled = false
             count = 0
-            classbinding.Text.textSize = 25f
+            classbinding.Text.textSize = 35f
             classbinding.Text.rotationX = 0f
-            classbinding.Text.text = "${resources.getString(R.string.msg)} ${DrctrsStuff.city_was}\n${resources.getString(R.string.msg2)}"
+            classbinding.Text.text = "${resources.getString(R.string.msg)} ${DrctrsStuff.city_was} ${resources.getString(R.string.msg2)}"
             classbinding.text2.textSize = 25f
-            classbinding.text2.text = "${resources.getString(R.string.msg3)}\n${resources.getString(R.string.msg4)}"
+            classbinding.text2.text = "${resources.getString(R.string.msg3)} ${resources.getString(R.string.msg4)}"
         }
     }
 }

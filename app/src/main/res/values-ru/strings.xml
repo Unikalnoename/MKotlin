@@ -9,10 +9,10 @@
     <string name="good">ХОРОШ</string>
     <string name="mgood">МЕГАХОРОШ</string>
     <string name="toast">Плюхи-приколюхи каждые 50 обстрелов</string>
-    <string name="msg">Пока тебя не было, </string>
-    <string name="msg2">"      уже востановили!"</string>
+    <string name="msg">Пока тебя не было,</string>
+    <string name="msg2">"уже востановили!"</string>
     <string name="msg3">Придётся бомбить,</string>
-    <string name="msg4">"           заново("</string>
+    <string name="msg4">"заново("</string>
     <string name="sure">Точно?</string>
     <string name="why">Так почему?</string>
     <string name="ercode">Неверный код</string>
@@ -54,4 +54,20 @@
     <string name="to_support">Поддержать</string>
     <string name="minus_money">*Все деньги списаны*</string>
     <string name="notifications">Уведомления</string>
+    <string name="Zaporozhye">Запорожье</string>
+    <string name="Nikolaev">Николаев</string>
+    <string name="Vinnitsa">Винницу</string>
+    <string name="Chernihiv">Чернигов</string>
+    <string name="Poltava">Полтаву</string>
+    <string name="Zhytomyr">Житомир</string>
+    <string name="Kharkov">Харьков</string>
+    <string name="Kremenchug">Кременчуг</string>
+    <string name="Ternopil">Тернополь</string>
+    <string name="Slavyansk">Славянск</string>
+    <string name="Kramatorsk">Краматорск</string>
+    <string name="Khmelnitsky">Хмельницкий</string>
+    <string name="Krivoy_Rog">Кривой Рог</string>
+    <string name="alphabetically">По алфовиту</string>
+    <string name="by_population">По населению</string>
+    <string name="accidentally">Случайно</string>
 </resources>

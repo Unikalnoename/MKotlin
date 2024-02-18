@@ -11,10 +11,10 @@
     <string name="good">GOOD</string>
     <string name="mgood">MEGAGOOD</string>
     <string name="toast">Jokes every 50 attacks</string>
-    <string name="msg">While you were gone, </string>
-    <string name="msg2"> has already been restored!</string>
+    <string name="msg">While you were gone,</string>
+    <string name="msg2">has already been restored!</string>
     <string name="msg3">Will have to</string>
-    <string name="msg4"> bomb again</string>
+    <string name="msg4">bomb again(</string>
     <string name="pp2" translatable="false">PutinPhone2</string>
     <string name="sure">Are you sure?</string>
     <string name="why">So why?</string>
@@ -64,4 +64,21 @@
     <string name="to_support">To support</string>
     <string name="minus_money">*All money is debited*</string>
     <string name="notifications">Notifications</string>
+    <string name="Zaporozhye">Zaporozhye</string>
+    <string name="Nikolaev">Nikolaev</string>
+    <string name="Vinnitsa">Vinnitsa</string>
+    <string name="Chernihiv">Chernihiv</string>
+    <string name="Poltava">Poltava</string>
+    <string name="Zhytomyr">Zhytomyr</string>
+    <string name="Kharkov">Kharkov</string>
+    <string name="Kremenchug">Kremenchug</string>
+    <string name="Ternopil">Ternopil</string>
+    <string name="Slavyansk">Slavyansk</string>
+    <string name="Kramatorsk">Kramatorsk</string>
+    <string name="Khmelnitsky">Khmelnitsky</string>
+    <string name="Krivoy_Rog">Krivoy Rog</string>
+    <string name="alphabetically">Alphabetically</string>
+    <string name="by_population">By population</string>
+    <string name="accidentally">Accidentally</string>
+    <string name="sad" translatable="false">:\'(</string>
 </resources>

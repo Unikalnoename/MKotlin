@@ -31,9 +31,19 @@ class ArrAdapter(private val context: Context, private val values: Array<String>
         pref = this.context.getSharedPreferences("MEMORY", Context.MODE_PRIVATE)
 
         if (DrctrsStuff.needanimation && string == DrctrsStuff.city_before) {
-            if (pref?.getBoolean("switch_anim", true) == true)
-                textView.x = 110F
+            textView.x = 150F
+            //здесь значение в которое оно увеличивается из 1.0
+            textView.scaleY = 1.15F
+            textView.scaleX = 1.15F
+            //разница в scaleX и scaleY в файлах из-за того что в press_to_right ведь увеличение идёт с 0.8 а не 1.0
+            //желаемый размер после увелечения делить на 0.8
+            //в to_left 1.0 поделить на желаемый размер
             anim(textView, R.anim.to_left)
+            if (pref?.getBoolean("switch_anim", true) == false) {
+                textView.x = 0F
+                textView.scaleY = 1F
+                textView.scaleX = 1F
+            }
             imageView.visibility = View.VISIBLE
             anim(imageView, R.anim.minus_alpha_to_right)
             if (pref?.getBoolean("switch_anim", true) == true) {
@@ -59,8 +69,9 @@ class ArrAdapter(private val context: Context, private val values: Array<String>
                 anim(textView, R.anim.press_to_right)
             }
             else {
-                if (pref?.getBoolean("switch_anim", true) == true)
-                    textView.x = 110F
+                textView.x = 150F
+                textView.scaleY = 1.15F
+                textView.scaleX = 1.15F
                 textView.setTextColor(Color.RED)
             }
         }
@@ -75,11 +86,11 @@ class ArrAdapter(private val context: Context, private val values: Array<String>
                     anim.startOffset = so
                     anim(textView, anim)
                 }
-                so += 75
+                so += 90
             }
 
             if (string == pref?.getString("city_now", context.getString(R.string.Kyiv)))
-                anim(imageView, R.anim.alpha)
+                anim(imageView, R.anim.alpha_scale)
         }
 
         return rowView

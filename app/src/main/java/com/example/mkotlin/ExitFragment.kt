@@ -16,6 +16,7 @@ import com.example.mkotlin.constants.DrctrsStuff
 import com.example.mkotlin.constants.anim
 import com.example.mkotlin.constants.isLand
 import com.example.mkotlin.constants.sound
+import com.example.mkotlin.constants.toast
 import com.example.mkotlin.constants.vibration
 import com.example.mkotlin.databinding.FragmentExitBinding
 import com.google.android.material.tabs.TabLayout
@@ -35,7 +36,7 @@ class ExitFragment : Fragment() {
         classbinding.editText.setOnClickListener {press()}
         classbinding.nukeText.setOnClickListener {pressNuke()}
         pref = this.activity?.getSharedPreferences("MEMORY", Context.MODE_PRIVATE)
-        anim(classbinding.textView, R.anim.alpha)
+        anim(classbinding.textView, R.anim.alpha_scale)
         if (isLand(resources))
             fo(R.anim.quast_land_anim)
         else
@@ -46,6 +47,7 @@ class ExitFragment : Fragment() {
     private fun pressNuke() {anim(classbinding.btnAcp, R.anim.change)}
 
     private fun back(v: View) {
+        DrctrsStuff.yes_pressed = true
         vibration(v)
         val tab = requireActivity().findViewById<View>(R.id.tabLayout) as TabLayout
         tab.getTabAt(0)?.select()
@@ -55,7 +57,6 @@ class ExitFragment : Fragment() {
         classbinding.btnAcp.text = resources.getString(R.string.YES)
         classbinding.btnNo.text = resources.getString(R.string.NO)
         classbinding.editText.text = null
-        classbinding.btnYes.visibility = View.VISIBLE
         classbinding.btnAcp.visibility = View.GONE
         classbinding.nukeText.text = null
         classbinding.nukeText.visibility = View.GONE
@@ -80,8 +81,8 @@ class ExitFragment : Fragment() {
     }
 
     private fun yes(v: View) {
-        val anim = AnimationUtils.loadAnimation(this.activity ,R.anim.alpha)
-        anim.duration = 800
+        val anim = AnimationUtils.loadAnimation(this.activity, R.anim.alpha_scale)
+        anim.duration = 650
         anim(classbinding.editText, anim)
         vibration(v)
         v.isClickable = false
@@ -204,6 +205,7 @@ class ExitFragment : Fragment() {
 
         if (!norm) {
             if (haram1 && haram2) {
+                toast(context, resources.getString(R.string.sad))
                 sound(R.raw.hellno)
                 classbinding.btnAcp.textSize = 50f
                 classbinding.btnNo.textSize = 50f

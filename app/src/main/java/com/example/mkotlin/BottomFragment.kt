@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
+import android.widget.Switch
+import com.example.mkotlin.constants.DrctrsStuff
 import com.example.mkotlin.constants.anim
 import com.example.mkotlin.constants.isLand
 import com.example.mkotlin.constants.toast
@@ -24,6 +26,7 @@ class BottomFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         classbinding = BottomSheetLayoutBinding.bind(inflater.inflate(R.layout.bottom_sheet_layout, container))
+        DrctrsStuff.is_bottom_open = true
         pref = this.context?.getSharedPreferences("MEMORY", Context.MODE_PRIVATE)
         classbinding.switchSound.isChecked = pref!!.getBoolean("switch_sound", true)
         classbinding.switchVibro.isChecked = pref!!.getBoolean("switch_vibro", true)
@@ -36,16 +39,34 @@ class BottomFragment : BottomSheetDialogFragment() {
             vibration(context, 666)
             anim(it, R.anim.press)
         }
-        anim(classbinding.buttonSupport, R.anim.quast_land_anim)
-        anim(classbinding.textView, R.anim.alpha)
-        anim(classbinding.imageView, R.anim.btn_right_anim)
-        var so:Long = 0
-        for (id in arrayOf(classbinding.switchSound, classbinding.switchVibro, classbinding.switchAnim, classbinding.switchNotification)) {
-            id.setOnClickListener{pressed(it)}
-            val anim = AnimationUtils.loadAnimation(this.activity ,R.anim.appearance)
-            anim.startOffset = so
-            anim(id, anim)
-            so += 90
+        anim(classbinding.textView, R.anim.alpha_scale)
+        if (isLand(resources)) {
+            var so = 0L
+            for (id in arrayOf(classbinding.switchAnim,classbinding.switchNotification,
+                classbinding.switchSound, classbinding.switchVibro)) {
+                id.setOnClickListener{pressed(it)}
+                val anim = AnimationUtils.loadAnimation(this.activity ,R.anim.appearance_fast)
+                anim.startOffset = so
+                anim(id, anim)
+                so += 100
+            }
+            for (id in arrayOf(classbinding.imageView, classbinding.buttonSupport)) {
+                val ani = AnimationUtils.loadAnimation(this.activity, R.anim.alpha_up)
+                ani.startOffset = so
+                anim(id, ani)
+                so += 300
+            }
+        }
+        else {
+            var so = 250L
+            for (id in arrayOf(classbinding.imageView, classbinding.switchSound, classbinding.switchVibro,
+                classbinding.switchAnim, classbinding.switchNotification, classbinding.buttonSupport)) {
+                if (id is Switch) id.setOnClickListener{pressed(it)}
+                val anim = AnimationUtils.loadAnimation(this.activity ,R.anim.alpha_up)
+                anim.startOffset = so
+                anim(id, anim)
+                so += 100
+            }
         }
         return classbinding.root
     }
@@ -55,15 +76,15 @@ class BottomFragment : BottomSheetDialogFragment() {
         dialog?.let {
             val bottomSheet = it.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout
             val behavior = BottomSheetBehavior.from(bottomSheet)
-            behavior.peekHeight = -1
+            behavior.peekHeight = if (isLand(resources)) 1 else 0
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
 
             behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {}
 
                 override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                    if (isLand(resources)) {if (slideOffset < 0.1) close()}
-                    else {if (slideOffset > 0.1) close()}
+                    if (slideOffset < 0.01)
+                        close()
                 }
             })
         }
@@ -100,6 +121,11 @@ class BottomFragment : BottomSheetDialogFragment() {
             }
         }
         vibration(v)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        DrctrsStuff.is_bottom_open = false
     }
 
     private fun close() {this.dismiss()}
