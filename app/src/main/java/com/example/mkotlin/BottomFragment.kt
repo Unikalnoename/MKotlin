@@ -35,7 +35,7 @@ class BottomFragment : BottomSheetDialogFragment() {
         classbinding.imageView.setOnClickListener {close()}
         classbinding.textView.setOnClickListener {close()}
         classbinding.buttonSupport.setOnClickListener {
-            toast(context, resources.getString(R.string.minus_money))
+            toast(context, resources.getString(R.string.minus_money), true)
             vibration(context, 666)
             anim(it, R.anim.press)
         }

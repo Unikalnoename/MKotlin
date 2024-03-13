@@ -9,7 +9,6 @@ import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -71,10 +70,6 @@ class MainActivity : AppCompatActivity(){
             override fun onTabSelected(tab: TabLayout.Tab) {
                 classbinding.viewPager.currentItem = tab.position
                 DrctrsStuff.current_item = classbinding.viewPager.currentItem
-                if (classbinding.tabLayout.selectedTabPosition == classbinding.tabLayout.tabCount - 1) {
-                    if (DrctrsStuff.yes_pressed) findViewById<Button>(R.id.btn_yes).visibility = View.VISIBLE
-                    DrctrsStuff.yes_pressed = false
-                }
                 val colorFrom = ContextCompat.getColor(applicationContext, R.color.teal_700)
                 val colorTo = ContextCompat.getColor(applicationContext, R.color.red)
                 val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, colorTo)
@@ -91,8 +86,7 @@ class MainActivity : AppCompatActivity(){
                 tab.view.scaleX = 1F
                 tab.view.scaleY = 1F
                 val ani = AnimationUtils.loadAnimation(applicationContext, R.anim.decrease)
-                if (pref?.getBoolean("switch_anim", true) == false)
-                    ani.duration = 0
+                if (pref?.getBoolean("switch_anim", true) == false) ani.duration = 0
                 tab.view.startAnimation(ani)
             }
 
@@ -111,8 +105,7 @@ class MainActivity : AppCompatActivity(){
                     tab.view.scaleX = 1.6F
                     tab.view.scaleY = 1.6F
                     val ani = AnimationUtils.loadAnimation(applicationContext, R.anim.increase)
-                    if (pref?.getBoolean("switch_anim", true) == false)
-                        ani.duration = 0
+                    if (pref?.getBoolean("switch_anim", true) == false) ani.duration = 0
                     tab.view.startAnimation(ani)
                 }
             }
@@ -125,8 +118,7 @@ class MainActivity : AppCompatActivity(){
     override fun onBackPressed() {
         if (classbinding.tabLayout.selectedTabPosition == classbinding.tabLayout.tabCount - 1)
             anim(findViewById<TextView>(R.id.textView), R.anim.change)
-        else
-            classbinding.tabLayout.getTabAt(classbinding.tabLayout.tabCount - 1)?.select()
+        else classbinding.tabLayout.getTabAt(classbinding.tabLayout.tabCount - 1)?.select()
     }
 
     private fun anim(v: View, res: Int) {anim(v, res, this)}

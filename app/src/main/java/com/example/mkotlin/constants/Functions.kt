@@ -46,9 +46,9 @@ fun sound(res: Int, context: FragmentActivity?) {
         MediaPlayer.create(context, res).start()
 }
 
-fun toast(context: Context?, string: String) {
+fun toast(context: Context?, string: String, cancel: Boolean) {
     if (pref?.getBoolean("switch_notification", true) == true) {
-        mToast?.cancel()
+        if (cancel) mToast?.cancel()
         mToast = Toast.makeText(context, string, Toast.LENGTH_SHORT)
         mToast?.show()
     }

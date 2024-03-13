@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import com.example.mkotlin.constants.DrctrsStuff
@@ -17,6 +18,7 @@ import com.example.mkotlin.constants.toast
 import com.example.mkotlin.constants.vibration
 import com.example.mkotlin.databinding.FragmentHomeBinding
 import com.google.android.material.tabs.TabLayout
+
 
 class HomeFragment : Fragment() {
     private lateinit var classbinding: FragmentHomeBinding
@@ -39,8 +41,7 @@ class HomeFragment : Fragment() {
             classbinding.btn2?.let{anim(it, R.anim.btn_right_anim)}
             anim(classbinding.btn, R.anim.btn_left_anim)
         }
-        else
-            anim(classbinding.btn, R.anim.appearance)
+        else anim(classbinding.btn, R.anim.appearance)
         var so = 0L
         for (id in listOf(classbinding.Text, classbinding.text2)) {
             val ani = AnimationUtils.loadAnimation(context, R.anim.alpha_scale)
@@ -56,12 +57,7 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     fun clicksAndAllThat(v: View) {
-        if (!isenebled) {
-            val anim = AnimationUtils.loadAnimation(this.activity, R.anim.record)
-            anim.repeatCount = 3
-            anim.duration = 100
-            anim(v, anim)
-        }
+        if (!isenebled) anim(v, R.anim.denied)
         else {
             anim(v, R.anim.press)
             if (!click) {
@@ -96,23 +92,37 @@ class HomeFragment : Fragment() {
         classbinding.text2.textSize = 35.5715f
         isenebled = true
         click = false
-        if (DrctrsStuff.is_nuke)
-            count += 100
+        if (DrctrsStuff.is_nuke) count += 100
         classbinding.text2.text = "${resources.getString(R.string.shell)} ${++count}"
         if (pref?.getLong("count_max", 0)!! < count) {
             pref?.edit()?.putLong("count_max", count)?.apply()
-            if (!showed && count > 1) {
+            if (!showed && count > 0) {
                 sound(R.raw.omg)
-                toast(context, resources.getString(R.string.newrec))
+                toast(context, resources.getString(R.string.newrec), true)
                 showed = true
-                anim(classbinding.text2, R.anim.record)
+                val rec = AnimationUtils.loadAnimation(context, R.anim.record)
+                rec.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(animation: Animation) {}
+
+                    override fun onAnimationRepeat(animation: Animation) {}
+
+                    override fun onAnimationEnd(animation: Animation) {anim(classbinding.text2, R.anim.after_record)}
+                })
+                val before = AnimationUtils.loadAnimation(context, R.anim.before_record)
+                before.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(animation: Animation) {}
+
+                    override fun onAnimationRepeat(animation: Animation) {}
+
+                    override fun onAnimationEnd(animation: Animation) {anim(classbinding.text2, rec)}
+                })
+                anim(classbinding.text2, before)
             }
         }
         if (!DrctrsStuff.is_nuke) {
             when (count) {
                 1L -> {
-                    if (!DrctrsStuff.isclick)
-                        toast(context, resources.getString(R.string.toast))
+                    if (!DrctrsStuff.isclick) toast(context, resources.getString(R.string.toast), false)
                     DrctrsStuff.isclick = true
                     classbinding.Text.isClickable = true
                     classbinding.Text.setText(R.string.app_name)
@@ -412,8 +422,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        for (id in listOf(classbinding.btn, classbinding.btn2))
-            id?.text = "${resources.getString(R.string.bomb)} ${pref?.getString("city_now", resources.getString(R.string.Kyiv))}"
+        for (id in listOf(classbinding.btn, classbinding.btn2)) id?.text = "${resources.getString(R.string.bomb)} ${pref?.getString("city_now", resources.getString(R.string.Kyiv))}"
         if (DrctrsStuff.isclick) {
             showed = false
             classbinding.boom.visibility = View.GONE

@@ -28,7 +28,6 @@ object DrctrsStuff {
     var needanimation = false
     var appearance = true
     var is_bottom_open = false
-    var yes_pressed = false
     var can_spinner_refresh = false
     var current_item = 0
 

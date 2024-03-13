@@ -75,8 +75,7 @@ class ArrAdapter(private val context: Context, private val values: Array<String>
                 textView.setTextColor(Color.RED)
             }
         }
-        else
-            imageView.visibility = View.INVISIBLE
+        else imageView.visibility = View.INVISIBLE
 
         if (DrctrsStuff.appearance) {
             var so:Long = 0

@@ -7,8 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -47,7 +45,7 @@ class ExitFragment : Fragment() {
     private fun pressNuke() {anim(classbinding.btnAcp, R.anim.change)}
 
     private fun back(v: View) {
-        DrctrsStuff.yes_pressed = true
+        classbinding.btnYes.visibility = View.VISIBLE
         vibration(v)
         val tab = requireActivity().findViewById<View>(R.id.tabLayout) as TabLayout
         tab.getTabAt(0)?.select()
@@ -63,12 +61,7 @@ class ExitFragment : Fragment() {
         classbinding.editText.visibility = View.GONE
     }
 
-    private fun noNo(v: View) {
-        val anim = AnimationUtils.loadAnimation(this.activity, R.anim.record)
-        anim.repeatCount = 3
-        anim.duration = 100
-        anim(v, anim)
-    }
+    private fun noNo(v: View) {anim(v, R.anim.denied)}
 
     private fun press() {
         classbinding.textView.setText(R.string.sure)
@@ -87,16 +80,9 @@ class ExitFragment : Fragment() {
         vibration(v)
         v.isClickable = false
         classbinding.editText.visibility = View.VISIBLE
-        val anim2 = AnimationUtils.loadAnimation(this.activity, R.anim.minus_alpha_press)
-        anim2.setAnimationListener(object : AnimationListener {
-            override fun onAnimationStart(animation: Animation) {}
-
-            override fun onAnimationRepeat(animation: Animation) {}
-
-            override fun onAnimationEnd(animation: Animation) {v.visibility = View.GONE}
-        })
+        v.visibility = View.GONE
         if (pref?.getBoolean("switch_anim", true) == true)
-            anim(v, anim2)
+            anim(v, R.anim.minus_alpha_press)
         else
             v.visibility = View.GONE
     }
@@ -205,7 +191,7 @@ class ExitFragment : Fragment() {
 
         if (!norm) {
             if (haram1 && haram2) {
-                toast(context, resources.getString(R.string.sad))
+                toast(context, resources.getString(R.string.sad), true)
                 sound(R.raw.hellno)
                 classbinding.btnAcp.textSize = 50f
                 classbinding.btnNo.textSize = 50f

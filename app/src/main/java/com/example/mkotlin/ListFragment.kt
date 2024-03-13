@@ -43,7 +43,7 @@ class ListFragment : Fragment() {
 
         classbinding.list.onItemClickListener = AdapterView.OnItemClickListener {parent, itemClicked, position, id ->
             if (classbinding.list.getItemAtPosition(position).toString() != pref?.getString("city_now", resources.getString(R.string.Kyiv))) {
-                toast(context, resources.getString(R.string.apl))
+                toast(context, resources.getString(R.string.apl), true)
                 vibration(classbinding.list)
                 DrctrsStuff.city_before = pref?.getString("city_now", context?.getString(R.string.Kyiv)).toString()
                 pref?.edit()?.putString("city_now", classbinding.list.getItemAtPosition(position).toString())?.apply()
